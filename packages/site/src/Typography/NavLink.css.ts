@@ -4,13 +4,12 @@ import { themeVars } from '../themes.css';
 export const link = style({
   textTransform: 'uppercase',
   color: themeVars.color.strong,
-  fontWeight: 'bold',
   textDecoration: 'none',
   ':hover': {
     textDecoration: 'underline',
   },
 });
 
-export const active = style({
+export const strong = style({
   fontWeight: themeVars.weight.strong,
 });

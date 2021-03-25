@@ -65,7 +65,7 @@ export default ({ route, publicPath, entrypoints }: RenderParams) => {
 
   return `<html>
     <head>
-      <link href="https://fonts.googleapis.com/css?family=DM+Sans:700&display=swap" rel="stylesheet">
+      <link href="https://fonts.googleapis.com/css?family=Shrikhand&display=swap" rel="stylesheet">
       ${cssAssets.join('\n')}
       ${renderToString(<Fragment>{headTags}</Fragment>)}
       <meta name="viewport" content="width=device-width, initial-scale=1">

@@ -20,9 +20,9 @@ export default ({
     className,
     linkStyles.link,
     styles.font.body,
-    styles.text[size].fontSize,
+    styles.text[size].base,
     {
-      [styles.text[size].transform]: baseline,
+      [styles.text[size].trims]: baseline,
     },
   );
 

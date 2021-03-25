@@ -17,7 +17,7 @@ export default ({ title, route, direction }: SiblingDocProps) => (
     paddingBottom="xxxlarge"
   >
     {direction === 'left' ? <Chevron direction="left" /> : null}
-    <Box display="inline-block" marginLeft="small" marginRight="small">
+    <Box display="inlineBlock" marginX="small">
       <Link to={route}>{title}</Link>
     </Box>
     {direction === 'right' ? <Chevron direction="right" /> : null}

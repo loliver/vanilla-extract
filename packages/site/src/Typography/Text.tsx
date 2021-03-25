@@ -24,11 +24,11 @@ export default ({
       component={component}
       className={classnames(
         styles.font.body,
-        styles.text[size].fontSize,
+        styles.text[size].base,
         styles.color[color],
         styles.weight[weight],
         {
-          [styles.text.standard.transform]: baseline,
+          [styles.text.standard.trims]: baseline,
         },
       )}
     >

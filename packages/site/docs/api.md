@@ -8,7 +8,7 @@ title: API
 
 Creates styles attached to a locally scoped class name.
 
-```ts
+```tsx
 import { style } from '@mattsjones/css-core';
 
 export const className = style({
@@ -18,7 +18,7 @@ export const className = style({
 
 CSS Variables (custom properties), simple pseudos, selectors and media/feature queries are all supported.
 
-```ts
+```tsx
 import { style } from '@mattsjones/css-core';
 
 export const className = style({
@@ -49,7 +49,7 @@ export const className = style({
 
 Selectors can also contain references to other scoped class names.
 
-```ts
+```tsx
 import { style } from '@mattsjones/css-core';
 
 export const parentClass = style({});
@@ -67,7 +67,7 @@ export const childClass = style({
 
 Creates styles attached to a global selector.
 
-```ts
+```tsx
 import { globalStyle } from '@mattsjones/css-core';
 
 globalStyle('html, body', {
@@ -79,7 +79,7 @@ globalStyle('html, body', {
 
 Creates a locally scoped theme class and a collection of scoped CSS Variables.
 
-```ts
+```tsx
 import { createTheme, style } from '@mattsjones/css-core';
 
 export const [themeClass, themeVars] = createTheme({
@@ -94,7 +94,7 @@ export const [themeClass, themeVars] = createTheme({
 
 You can create theme variants by passing a collection of theme variables as the first argument to `createTheme`.
 
-```ts
+```tsx
 import { createTheme, style } from '@mattsjones/css-core';
 
 export const [themeA, themeVars] = createTheme({
@@ -122,7 +122,7 @@ export const themeB = createTheme(themeVars, {
 
 Creates a theme attached to a global selector, but with locally scoped variable names.
 
-```ts
+```tsx
 import { createGlobalTheme } from '@mattsjones/css-core';
 
 export const themeVars = createGlobalTheme(':root', {
@@ -143,7 +143,7 @@ Creates a collection of CSS Variables without coupling them to a specific theme 
 
 > 💡 This is useful if you want to split your themes into different bundles. In this case, your themes would be defined in separate files, but we'll keep this example simple.
 
-```ts
+```tsx
 import {
   createThemeVars,
   createTheme
@@ -181,7 +181,7 @@ export const themeB = createTheme(themeVars, {
 
 Creates a custom font attached to a locally scoped font name.
 
-```ts
+```tsx
 import { fontFace, style } from '@mattsjones/css-core';
 
 const myFont = fontFace({
@@ -197,7 +197,7 @@ export const text = style({
 
 Creates a globally scoped custom font.
 
-```ts
+```tsx
 import {
   globalFontFace,
   style
@@ -216,7 +216,7 @@ export const text = style({
 
 Creates a locally scoped set of keyframes.
 
-```ts
+```tsx
 import { keyframes, style } from '@mattsjones/css-core';
 
 const rotate = keyframes({
@@ -233,7 +233,7 @@ export const animated = style({
 
 Creates a globally scoped set of keyframes.
 
-```ts
+```tsx
 import { globalKeyframes, style } from '@mattsjones/css-core';
 
 globalKeyframes('rotate', {

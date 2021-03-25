@@ -1,12 +1,25 @@
 import { mapToStyles } from '@mattsjones/css-core';
+import { createCss } from '../capsize';
 import { themeVars } from '../themes.css';
 import { mapToProperty } from '../themeUtils';
 
 const makeTypographyRules = (
   textDefinition: typeof themeVars.text.standard,
 ) => {
+  const {
+    fontSize: mobileFontSize,
+    lineHeight: mobileLineHeight,
+    ...mobileTrims
+  } = createCss(textDefinition.mobile);
+
+  const {
+    fontSize: tabletFontSize,
+    lineHeight: tabletLineHeight,
+    ...desktopTrims
+  } = createCss(textDefinition.desktop);
+
   return {
-    fontSize: {
+    base: {
       fontSize: textDefinition.mobile.fontSize,
       lineHeight: textDefinition.mobile.lineHeight,
       '@media': {
@@ -16,12 +29,10 @@ const makeTypographyRules = (
         },
       },
     },
-    transform: {
-      transform: textDefinition.mobile.transform,
+    trims: {
+      ...mobileTrims,
       '@media': {
-        'screen and (min-width: 768px)': {
-          transform: textDefinition.desktop.transform,
-        },
+        'screen and (min-width: 768px)': desktopTrims,
       },
     },
   };

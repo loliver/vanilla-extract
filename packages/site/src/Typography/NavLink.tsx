@@ -9,7 +9,7 @@ interface LinkProps extends NavLinkProps {
   size?: 'standard' | 'small' | 'xsmall';
 }
 export default ({
-  baseline,
+  baseline = true,
   size = 'standard',
   children,
   ...restProps
@@ -19,13 +19,14 @@ export default ({
       {...restProps}
       className={classnames(
         linkStyles.link,
+        linkStyles.strong,
         typeStyles.font.body,
-        typeStyles.text[size].fontSize,
+        typeStyles.text[size].base,
         {
-          [typeStyles.text[size].transform]: baseline,
+          [typeStyles.text[size].trims]: baseline,
         },
       )}
-      activeClassName={linkStyles.active}
+      activeClassName={linkStyles.strong}
     >
       {children}
     </NavLink>

@@ -1,37 +1,45 @@
 import { createTheme } from '@mattsjones/css-core';
-import basekick from 'basekick';
+import { computeValues } from './capsize';
 import { Breakpoint } from './themeUtils';
 
 const grid = 4;
 const px = (value: string | number) => `${value}px`;
 
 const fontMetrics = {
+  // heading: {
+  //   capHeight: 700,
+  //   ascent: 992,
+  //   descent: -310,
+  //   lineGap: 0,
+  //   unitsPerEm: 1000,
+  // },
+  // heading: {
+  //   capHeight: 781,
+  //   ascent: 881,
+  //   descent: -234,
+  //   lineGap: 0,
+  //   unitsPerEm: 1000,
+  // },
   heading: {
-    descenderHeightScale: 0.12,
-    gridRowHeight: grid,
-    // capHeight: 700,
-    // ascent: 992,
-    // descent: -310,
-    // lineGap: 0,
-    // unitsPerEm: 1000,
+    capHeight: 669,
+    ascent: 1026,
+    descent: -432,
+    lineGap: 0,
+    unitsPerEm: 1000,
   },
   body: {
-    descenderHeightScale: 0.16,
-    gridRowHeight: grid,
-    // capHeight: 1456,
-    // ascent: 1900,
-    // descent: -500,
-    // lineGap: 0,
-    // unitsPerEm: 2048,
+    capHeight: 1443,
+    ascent: 1950,
+    descent: -494,
+    lineGap: 0,
+    unitsPerEm: 2048,
   },
   code: {
-    descenderHeightScale: 0.16,
-    gridRowHeight: grid,
-    // capHeight: 1456,
-    // ascent: 2146,
-    // descent: -555,
-    // lineGap: 0,
-    // unitsPerEm: 2048,
+    capHeight: 1456,
+    ascent: 2146,
+    descent: -555,
+    lineGap: 0,
+    unitsPerEm: 2048,
   },
 };
 
@@ -39,30 +47,30 @@ const calculateTypographyStyles = (
   definition: Record<Breakpoint, { fontSize: number; rows: number }>,
   type: keyof typeof fontMetrics,
 ) => {
-  const mobile = basekick({
-    baseFontSize: 1,
-    typeSizeModifier: definition.mobile.fontSize,
-    typeRowSpan: definition.mobile.rows,
-    ...fontMetrics[type],
+  const mobile = computeValues({
+    fontSize: definition.mobile.fontSize,
+    leading: definition.mobile.rows * grid,
+    fontMetrics: fontMetrics[type],
   });
 
-  const desktop = basekick({
-    baseFontSize: 1,
-    typeSizeModifier: definition.desktop.fontSize,
-    typeRowSpan: definition.desktop.rows,
-    ...fontMetrics[type],
+  const desktop = computeValues({
+    fontSize: definition.desktop.fontSize,
+    leading: definition.desktop.rows * grid,
+    fontMetrics: fontMetrics[type],
   });
 
   return {
     mobile: {
       fontSize: mobile.fontSize,
       lineHeight: mobile.lineHeight,
-      transform: mobile.transform,
+      capHeightTrim: mobile.capHeightTrim,
+      baselineTrim: mobile.baselineTrim,
     },
     desktop: {
       fontSize: desktop.fontSize,
       lineHeight: desktop.lineHeight,
-      transform: desktop.transform,
+      capHeightTrim: desktop.capHeightTrim,
+      baselineTrim: desktop.baselineTrim,
     },
   };
 };
@@ -70,9 +78,9 @@ const calculateTypographyStyles = (
 export const [themeClass, themeVars] = createTheme({
   fonts: {
     heading:
-      '"DM Sans", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif',
+      'Shrikhand, "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif',
     body:
-      'Roboto, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif',
+      '-apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif',
     code: '"Roboto Mono", Menlo, monospace',
   },
   grid: px(grid),
@@ -193,12 +201,14 @@ export const [themeClass, themeVars] = createTheme({
   },
   background: {
     body: '#fff',
-    menu: 'linear-gradient(0deg, #f5efff, #dbeeff)',
-    overlay: '#fff',
+    menu: '#fff',
+    overlay: '#26e08a',
     code: '#1c1724',
-    note: '#f9f8fa',
+    note: '#e3f8ff',
+    blue: '#76d3ef',
   },
   border: {
-    standard: '3px',
+    standard: '4px',
+    large: '8px',
   },
 });

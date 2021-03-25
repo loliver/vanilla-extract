@@ -1,6 +1,6 @@
 import React, { ReactNode, AllHTMLAttributes } from 'react';
 import Text from './Typography/Text';
-import { H1, H2, H3 } from './Typography/Heading';
+import { H1, H2, H3, HeadingProps } from './Typography/Heading';
 import { Box } from './system';
 import Code from './Code/Code';
 import InlineCode from './InlineCode/InlineCode';
@@ -37,9 +37,29 @@ const A = ({
   href ? <Link to={href} {...restProps} /> : <a {...restProps} />;
 
 export default {
+  hr: () => (
+    <Box paddingTop="small" paddingBottom="xxlarge">
+      <Box
+        style={{
+          height: 8,
+          width: 120,
+          borderRadius: '9999px',
+          background: '#f090f5',
+        }}
+      />
+    </Box>
+  ),
   p: P,
-  h1: H1,
-  h2: H2,
+  h1: (props: HeadingProps) => (
+    <Box marginBottom="xxlarge">
+      <H1 {...props} />
+    </Box>
+  ),
+  h2: (props: HeadingProps) => (
+    <Box marginBottom="xlarge">
+      <H3 {...props} />
+    </Box>
+  ),
   h3: H3,
   pre: Pre,
   code: Code,

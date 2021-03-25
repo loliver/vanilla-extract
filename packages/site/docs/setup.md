@@ -10,6 +10,22 @@ Install the core package.
 $ yarn add --dev @mattsjones/css-core
 ```
 
+## Babel Setup
+
+Add the [Babel](https://babeljs.io) plugin.
+
+```bash
+$ yarn add --dev @mattsjones/css-babel-plugin
+```
+
+Then, add it to your Babel config. For example in `.babelrc`:
+
+```json
+{
+  "plugins": ["@mattsjones/css-babel-plugin"]
+}
+```
+
 ## Webpack Setup
 
 Add the [webpack](https://webpack.js.org) plugin.
@@ -54,23 +70,4 @@ module.exports = {
     ],
   },
 };
-```
-
-
-## Babel Setup
-
-In order to improve the debugging experience, @mattsjones/css-core also provides an optional Babel plugin.
-
-Add the [Babel](https://babeljs.io) plugin.
-
-```bash
-$ yarn add --dev @mattsjones/css-babel-plugin
-```
-
-Then, add it to your Babel config. For example in `.babelrc`:
-
-```json
-{
-  "plugins": ["@mattsjones/css-babel-plugin"]
-}
 ```

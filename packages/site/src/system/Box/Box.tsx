@@ -5,7 +5,6 @@ import * as resetStyles from '../styles/reset.css';
 import * as atomStyles from '../styles/atoms.css';
 
 export type Space = keyof typeof atomStyles['padding']['bottom'];
-export type ResponsiveSpace = ResponsiveProp<Space>;
 
 type ResponsiveProp<AtomName> =
   | AtomName
@@ -13,10 +12,16 @@ type ResponsiveProp<AtomName> =
 
 interface BoxProps extends AllHTMLAttributes<HTMLElement> {
   component?: ElementType;
+  padding?: ResponsiveProp<Space>;
+  paddingX?: ResponsiveProp<Space>;
+  paddingY?: ResponsiveProp<Space>;
   paddingTop?: ResponsiveProp<Space>;
   paddingBottom?: ResponsiveProp<Space>;
   paddingLeft?: ResponsiveProp<Space>;
   paddingRight?: ResponsiveProp<Space>;
+  margin?: ResponsiveProp<Space>;
+  marginX?: ResponsiveProp<Space>;
+  marginY?: ResponsiveProp<Space>;
   marginTop?: ResponsiveProp<Space>;
   marginBottom?: ResponsiveProp<Space>;
   marginLeft?: ResponsiveProp<Space>;
@@ -49,10 +54,16 @@ export const resolveResponsiveProp = <Keys extends string | number>(
 export const Box = ({
   component = 'div',
   className,
+  padding,
+  paddingX,
+  paddingY,
   paddingTop,
   paddingBottom,
   paddingLeft,
   paddingRight,
+  margin,
+  marginX,
+  marginY,
   marginTop,
   marginBottom,
   marginLeft,
@@ -66,55 +77,65 @@ export const Box = ({
   flexShrink,
   ...restProps
 }: BoxProps) => {
+  const resolvedPaddingTop = paddingTop || paddingY || padding;
+  const resolvedPaddingBottom = paddingBottom || paddingY || padding;
+  const resolvedPaddingLeft = paddingLeft || paddingX || padding;
+  const resolvedPaddingRight = paddingRight || paddingX || padding;
+
+  const resolvedMarginTop = marginTop || marginY || margin;
+  const resolvedMarginBottom = marginBottom || marginY || margin;
+  const resolvedMarginLeft = marginLeft || marginX || margin;
+  const resolvedMarginRight = marginRight || marginX || margin;
+
   const atomClasses = classnames(
     className,
     resetStyles.base,
     resetStyles.element[component as keyof typeof resetStyles.element],
-    paddingTop &&
+    resolvedPaddingTop &&
       resolveResponsiveProp(
-        paddingTop,
+        resolvedPaddingTop,
         atomStyles.padding.top,
         atomStyles.paddingDesktop.top,
       ),
-    paddingBottom &&
+    resolvedPaddingBottom &&
       resolveResponsiveProp(
-        paddingBottom,
+        resolvedPaddingBottom,
         atomStyles.padding.bottom,
         atomStyles.paddingDesktop.bottom,
       ),
-    paddingLeft &&
+    resolvedPaddingLeft &&
       resolveResponsiveProp(
-        paddingLeft,
+        resolvedPaddingLeft,
         atomStyles.padding.left,
         atomStyles.paddingDesktop.left,
       ),
-    paddingRight &&
+    resolvedPaddingRight &&
       resolveResponsiveProp(
-        paddingRight,
+        resolvedPaddingRight,
         atomStyles.padding.right,
         atomStyles.paddingDesktop.right,
       ),
-    marginTop &&
+    resolvedMarginTop &&
       resolveResponsiveProp(
-        marginTop,
+        resolvedMarginTop,
         atomStyles.margin.top,
         atomStyles.marginDesktop.top,
       ),
-    marginBottom &&
+    resolvedMarginBottom &&
       resolveResponsiveProp(
-        marginBottom,
+        resolvedMarginBottom,
         atomStyles.margin.bottom,
         atomStyles.marginDesktop.bottom,
       ),
-    marginLeft &&
+    resolvedMarginLeft &&
       resolveResponsiveProp(
-        marginLeft,
+        resolvedMarginLeft,
         atomStyles.margin.left,
         atomStyles.marginDesktop.left,
       ),
-    marginRight &&
+    resolvedMarginRight &&
       resolveResponsiveProp(
-        marginRight,
+        resolvedMarginRight,
         atomStyles.margin.right,
         atomStyles.marginDesktop.right,
       ),

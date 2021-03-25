@@ -28,13 +28,14 @@ export interface HeadingProps {
 }
 const Heading = ({ level, children, id }: HeadingProps) => {
   const headingElement = createElement(
-    getHeadingComponent(level),
+    Box,
     {
+      component: getHeadingComponent(level),
       className: classnames(
         styles.font.heading,
         styles.color.strong,
-        styles.heading[level].fontSize,
-        styles.heading[level].transform,
+        styles.heading[level].base,
+        styles.heading[level].trims,
       ),
     },
     children,
@@ -53,9 +54,7 @@ const Heading = ({ level, children, id }: HeadingProps) => {
 };
 
 export const H1 = (props: Omit<HeadingProps, 'level'>) => (
-  <Box marginTop="medium" marginBottom="xxlarge">
-    <Heading level="1" {...props} />
-  </Box>
+  <Heading level="1" {...props} />
 );
 
 export const H2 = (props: Omit<HeadingProps, 'level'>) => (
