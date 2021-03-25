@@ -41,7 +41,7 @@ const Heading = ({ level, children, id }: HeadingProps) => {
     children,
   );
 
-  return level === '2' ? (
+  return id ? (
     <Fragment>
       <Anchor id={id} />
       <a style={{ textDecoration: 'none' }} href={`#${id}`}>

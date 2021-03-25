@@ -6,20 +6,6 @@ const grid = 4;
 const px = (value: string | number) => `${value}px`;
 
 const fontMetrics = {
-  // heading: {
-  //   capHeight: 700,
-  //   ascent: 992,
-  //   descent: -310,
-  //   lineGap: 0,
-  //   unitsPerEm: 1000,
-  // },
-  // heading: {
-  //   capHeight: 781,
-  //   ascent: 881,
-  //   descent: -234,
-  //   lineGap: 0,
-  //   unitsPerEm: 1000,
-  // },
   heading: {
     capHeight: 669,
     ascent: 1026,

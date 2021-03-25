@@ -2,7 +2,7 @@
 title: Introduction
 ---
 
-# Zero-runtime Stylesheets-in-TypeScript.
+# Zero-runtime<br/>Stylesheets-in-TypeScript.
 
 Write your styles in TypeScript (or JavaScript) with locally scoped class names and CSS Variables, then generate static CSS files at build time.
 
