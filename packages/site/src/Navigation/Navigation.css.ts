@@ -1,4 +1,5 @@
 import { style } from '@mattsjones/css-core';
+import { themeVars } from '../themes.css';
 
 export const subLink = style({
   selectors: {
@@ -18,6 +19,6 @@ export const activeSubLinkBar = style({
   top: 2,
   bottom: 2,
   width: 4,
-  borderRadius: '9999px',
+  borderRadius: themeVars.border.radius.full,
   backgroundColor: '#26e08a',
 });

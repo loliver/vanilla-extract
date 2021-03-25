@@ -1,13 +1,12 @@
-import React, { createElement, Fragment, ReactNode } from 'react';
-import { Anchor } from '../Anchor/Anchor';
+import React, { ElementType, ReactNode } from 'react';
 import classnames from 'classnames';
 
 import * as styles from './typography.css';
 import { Box } from '../system';
 
-type Omit<T, K> = Pick<T, Exclude<keyof T, K>>;
+export type HeadingLevel = keyof typeof styles.heading;
 
-const getHeadingComponent = (level: keyof typeof styles.heading) => {
+const getHeadingComponent = (level: HeadingLevel) => {
   if (level === '1') {
     return 'h1';
   }
@@ -23,44 +22,25 @@ const getHeadingComponent = (level: keyof typeof styles.heading) => {
 
 export interface HeadingProps {
   children: ReactNode;
-  id: string;
-  level: keyof typeof styles.heading;
+  level: HeadingLevel;
+  component?: ElementType;
 }
-const Heading = ({ level, children, id }: HeadingProps) => {
-  const headingElement = createElement(
-    Box,
-    {
-      component: getHeadingComponent(level),
-      className: classnames(
-        styles.font.heading,
-        styles.color.strong,
-        styles.heading[level].base,
-        styles.heading[level].trims,
-      ),
-    },
-    children,
+
+export const useHeadingStyles = (level: HeadingLevel) =>
+  classnames(
+    styles.font.heading,
+    styles.color.strong,
+    styles.heading[level].base,
+    styles.heading[level].trims,
   );
 
-  return id ? (
-    <Fragment>
-      <Anchor id={id} />
-      <a style={{ textDecoration: 'none' }} href={`#${id}`}>
-        {headingElement}
-      </a>
-    </Fragment>
-  ) : (
-    headingElement
+export const Heading = ({ level, component, children }: HeadingProps) => {
+  return (
+    <Box
+      component={component || getHeadingComponent(level)}
+      className={useHeadingStyles(level)}
+    >
+      {children}
+    </Box>
   );
 };
-
-export const H1 = (props: Omit<HeadingProps, 'level'>) => (
-  <Heading level="1" {...props} />
-);
-
-export const H2 = (props: Omit<HeadingProps, 'level'>) => (
-  <Heading level="2" {...props} />
-);
-
-export const H3 = (props: Omit<HeadingProps, 'level'>) => (
-  <Heading level="3" {...props} />
-);

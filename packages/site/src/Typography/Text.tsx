@@ -22,6 +22,7 @@ export default ({
   return (
     <Box
       component={component}
+      display="block"
       className={classnames(
         styles.font.body,
         styles.text[size].base,

@@ -192,9 +192,15 @@ export const [themeClass, themeVars] = createTheme({
     code: '#1c1724',
     note: '#e3f8ff',
     blue: '#76d3ef',
+    pink: '#f090f5',
   },
   border: {
-    standard: '4px',
-    large: '8px',
+    width: {
+      standard: '4px',
+      large: '8px',
+    },
+    radius: {
+      full: '9999px',
+    },
   },
 });

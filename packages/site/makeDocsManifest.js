@@ -13,7 +13,7 @@ const contents = require('./contents');
       return {
         fileName,
         id,
-        route: `/${typeof route === 'string' ? route : id}`,
+        route: `/documentation/${typeof route === 'string' ? route : id}`,
         sections: makeDocumentIndex(fileContents),
       };
     }),

@@ -1,15 +1,27 @@
-import React, { ReactNode, AllHTMLAttributes } from 'react';
+import React, {
+  ReactNode,
+  AllHTMLAttributes,
+  ElementType,
+  createElement,
+} from 'react';
 import Text from './Typography/Text';
-import { H1, H2, H3, HeadingProps } from './Typography/Heading';
 import { Box } from './system';
 import Code from './Code/Code';
 import InlineCode from './InlineCode/InlineCode';
 import Link from './Typography/Link';
 import Blockquote from './Blockquote/Blockquote';
+import { HeadingLevel, useHeadingStyles } from './Typography/Heading';
+import Divider from './Divider/Divider';
 
-type Children = {
+interface Children {
   children: ReactNode;
-};
+}
+interface HeadingProps {
+  children: ReactNode;
+  component: ElementType;
+  level: HeadingLevel;
+  id: string;
+}
 
 const P = (props: Children) => (
   <Box component="p" paddingBottom="xlarge">
@@ -36,31 +48,57 @@ const A = ({
 }: AllHTMLAttributes<HTMLAnchorElement>) =>
   href ? <Link to={href} {...restProps} /> : <a {...restProps} />;
 
+const Heading = ({ level, component, children, id }: HeadingProps) => {
+  const headingElement = createElement(
+    Box,
+    {
+      component: component,
+      className: useHeadingStyles(level),
+    },
+    children,
+  );
+
+  return id ? (
+    <>
+      <Box
+        component="a"
+        display="block"
+        id={id}
+        style={{
+          visibility: 'hidden',
+        }}
+      />
+      <a style={{ textDecoration: 'none' }} href={`#${id}`}>
+        {headingElement}
+      </a>
+    </>
+  ) : (
+    headingElement
+  );
+};
+
 export default {
   hr: () => (
     <Box paddingTop="small" paddingBottom="xxlarge">
-      <Box
-        style={{
-          height: 8,
-          width: 120,
-          borderRadius: '9999px',
-          background: '#f090f5',
-        }}
-      />
+      <Divider />
     </Box>
   ),
   p: P,
   h1: (props: HeadingProps) => (
     <Box marginBottom="xxlarge">
-      <H1 {...props} />
+      <Heading {...props} level="1" component="h1" />
     </Box>
   ),
   h2: (props: HeadingProps) => (
-    <Box marginBottom="xlarge">
-      <H3 {...props} />
+    <Box marginBottom="xxlarge">
+      <Heading {...props} level="3" component="h2" />
     </Box>
   ),
-  h3: H3,
+  h3: (props: HeadingProps) => (
+    <Box marginBottom="xlarge">
+      <Heading {...props} level="3" component="h3" />
+    </Box>
+  ),
   pre: Pre,
   code: Code,
   inlineCode: InlineCode,
@@ -68,4 +106,23 @@ export default {
   td: Td,
   a: A,
   blockquote: Blockquote,
+  ul: (props: Children) => (
+    <Box
+      component="ul"
+      paddingBottom="large"
+      style={{
+        listStyle: 'disc',
+        padding: '0 1em',
+      }}
+    >
+      {props.children}
+    </Box>
+  ),
+  li: (props: Children) => (
+    <Box component="li" paddingBottom="large">
+      <Text component="span" baseline={false}>
+        {props.children}
+      </Text>
+    </Box>
+  ),
 };
