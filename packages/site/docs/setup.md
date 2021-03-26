@@ -7,7 +7,7 @@ title: Setup
 Install the core package.
 
 ```bash
-$ yarn add --dev @mattsjones/css-core
+$ npm install --save-dev @mattsjones/css-core
 ```
 
 ## Babel Setup
@@ -15,7 +15,7 @@ $ yarn add --dev @mattsjones/css-core
 Add the [Babel](https://babeljs.io) plugin.
 
 ```bash
-$ yarn add --dev @mattsjones/css-babel-plugin
+$ npm install --save-dev @mattsjones/css-babel-plugin
 ```
 
 Then, add it to your Babel config. For example in `.babelrc`:
@@ -31,7 +31,7 @@ Then, add it to your Babel config. For example in `.babelrc`:
 Add the [webpack](https://webpack.js.org) plugin.
 
 ```bash
-$ yarn add --dev @mattsjones/css-webpack-plugin
+$ npm install --save-dev @mattsjones/css-webpack-plugin
 ```
 
 Then, add it to the `plugins` array in your webpack config. For example:

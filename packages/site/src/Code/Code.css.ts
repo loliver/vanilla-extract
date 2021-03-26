@@ -10,25 +10,29 @@ export const root = style({
 const tokenSelector = (tokenName: string) => `${root} .${tokenName}`;
 
 globalStyle(tokenSelector('comment'), {
-  color: '#60646f',
+  color: themeVars.palette.grey[500],
 });
 
 globalStyle(['keyword', 'selector'].map(tokenSelector).join(', '), {
-  color: '#c1d8fd',
+  color: themeVars.palette.blue[200],
 });
 
 globalStyle(tokenSelector('string'), {
-  color: '#cbfff1',
+  color: themeVars.palette.green[200],
+});
+
+globalStyle(tokenSelector('variable'), {
+  color: 'red',
+});
+
+globalStyle(tokenSelector('property'), {
+  color: 'blue',
 });
 
 globalStyle(tokenSelector('function'), {
-  color: '#f0bcff',
+  color: themeVars.palette.pink[300],
 });
 
-globalStyle(tokenSelector('punctuation'), {
-  color: '#adadff',
-});
-
-globalStyle(tokenSelector('operator'), {
-  color: '#c6afff',
+globalStyle(['punctuation', 'operator'].map(tokenSelector).join(', '), {
+  color: themeVars.palette.grey[400],
 });

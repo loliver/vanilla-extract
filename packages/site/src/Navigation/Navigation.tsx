@@ -101,9 +101,9 @@ export default ({ onSelect }: { onSelect: () => void }) => {
       ))}
       <NavSection
         title="Community"
-        href="https://www.github.com/seek-oss/treat"
+        href="https://github.com/seek-oss/$library-name"
       >
-        <SubLink to="https://www.github.com/seek-oss/treat">GitHub</SubLink>
+        <SubLink to="https://github.com/seek-oss/$library-name">GitHub</SubLink>
       </NavSection>
     </>
   );

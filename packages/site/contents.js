@@ -4,8 +4,4 @@ module.exports = [
   { fileName: 'setup.md', id: 'setup' },
   { fileName: 'api.md', id: 'api' },
   { fileName: 'utility-functions.md', id: 'utility-functions' },
-  // { fileName: 'styling-api.md', id: 'styling-api' },
-  // { fileName: 'runtime-api.md', id: 'runtime-api' },
-  // { fileName: 'react-api.md', id: 'react-api' },
-  // { fileName: 'webpack-options.md', id: 'webpack-options' },
 ];

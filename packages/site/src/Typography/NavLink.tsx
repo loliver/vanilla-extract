@@ -1,8 +1,8 @@
 import React from 'react';
 import { NavLink, NavLinkProps } from 'react-router-dom';
 import classnames from 'classnames';
-import * as typeStyles from './typography.css';
-import * as linkStyles from './NavLink.css';
+import * as textStyles from './typography.css';
+import * as styles from './NavLink.css';
 
 interface LinkProps extends NavLinkProps {
   baseline?: boolean;
@@ -18,15 +18,15 @@ export default ({
     <NavLink
       {...restProps}
       className={classnames(
-        linkStyles.link,
-        linkStyles.strong,
-        typeStyles.font.body,
-        typeStyles.text[size].base,
+        styles.link,
+        styles.strong,
+        textStyles.font.body,
+        textStyles.text[size].base,
         {
-          [typeStyles.text[size].trims]: baseline,
+          [textStyles.text[size].trims]: baseline,
         },
       )}
-      activeClassName={linkStyles.strong}
+      activeClassName={styles.strong}
     >
       {children}
     </NavLink>

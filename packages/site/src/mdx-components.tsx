@@ -100,7 +100,13 @@ export default {
     </Box>
   ),
   pre: Pre,
-  code: Code,
+  code: ({
+    'data-language': language,
+    dangerouslySetInnerHTML,
+  }: {
+    'data-language': string;
+    dangerouslySetInnerHTML: { __html: string };
+  }) => <Code language={language}>{dangerouslySetInnerHTML}</Code>,
   inlineCode: InlineCode,
   th: Th,
   td: Td,

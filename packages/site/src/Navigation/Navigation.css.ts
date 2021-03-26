@@ -20,5 +20,5 @@ export const activeSubLinkBar = style({
   bottom: 2,
   width: 4,
   borderRadius: themeVars.border.radius.full,
-  backgroundColor: '#26e08a',
+  backgroundColor: themeVars.background.green,
 });

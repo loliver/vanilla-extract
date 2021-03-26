@@ -8,5 +8,5 @@ export const root = style({
 });
 
 globalStyle(`${root} *`, {
-  color: '#127999',
+  color: themeVars.palette.blue[600],
 });

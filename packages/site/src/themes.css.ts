@@ -29,6 +29,45 @@ const fontMetrics = {
   },
 };
 
+const palette = {
+  grey: {
+    700: '#434855',
+    600: '#5A6070',
+    500: '#71788B',
+    400: '#8991a5',
+    300: '#A5ADC0',
+    200: '#C4CAD9',
+    100: '#E5E8F0',
+  },
+  blue: {
+    700: '#376C8F',
+    600: '#4A88B4',
+    500: '#5FA4DA',
+    400: '#76C0FF',
+    300: '#8AD2FF',
+    200: '#AAE3FF',
+    100: '#D6F4FF',
+  },
+  pink: {
+    700: '#8F448F',
+    600: '#B35BB4',
+    500: '#D375D7',
+    400: '#F090F5',
+    300: '#F6ABFA',
+    200: '#FBC8FE',
+    100: '#FEE7FF',
+  },
+  green: {
+    700: '#20734D',
+    600: '#249661',
+    500: '#26BA75',
+    400: '#26E08A',
+    300: '#5BEDAA',
+    200: '#94F6C9',
+    100: '#D0FDE8',
+  },
+};
+
 const calculateTypographyStyles = (
   definition: Record<Breakpoint, { fontSize: number; rows: number }>,
   type: keyof typeof fontMetrics,
@@ -182,18 +221,20 @@ export const [themeClass, themeVars] = createTheme({
   },
   color: {
     strong: '#26232c',
-    neutral: '#46444b',
-    code: '#fff',
+    neutral: palette.grey[700],
+    code: palette.grey[100],
   },
   background: {
     body: '#fff',
     menu: '#fff',
-    overlay: '#26e08a',
+    overlay: palette.green[400],
     code: '#1c1724',
     note: '#e3f8ff',
-    blue: '#76d3ef',
-    pink: '#f090f5',
+    blue: palette.blue[400],
+    pink: palette.pink[400],
+    green: palette.green[400],
   },
+  palette,
   border: {
     width: {
       standard: '4px',

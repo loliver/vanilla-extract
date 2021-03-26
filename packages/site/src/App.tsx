@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
-import { Link, Route } from 'react-router-dom';
+import { Link as ReactRouterLink, Route } from 'react-router-dom';
 import { MDXProvider } from '@mdx-js/react';
 import mdxComponents from './mdx-components';
 import { Box } from './system';
@@ -11,6 +11,9 @@ import Navigation from './Navigation/Navigation';
 import { Fab } from './Fab/Fab';
 import { ContentBlock } from './system/ContentBlock/ContentBlock';
 import { Heading } from './Typography/Heading';
+import Link from './Typography/Link';
+import Code from './Code/Code';
+import Text from './Typography/Text';
 
 const Logo = () => (
   <Box
@@ -41,14 +44,9 @@ const DocumentationPage = () => {
         paddingX="large"
         className={styles.header}
       >
-        <Link
-          to="/"
-          style={{
-            textDecoration: 'none',
-          }}
-        >
+        <ReactRouterLink to="/" style={{ textDecoration: 'none' }}>
           <Logo />
-        </Link>
+        </ReactRouterLink>
         <Box paddingTop="small">
           <Fab open={menuOpen} onClick={toggleMenu} />
         </Box>
@@ -89,25 +87,44 @@ const HomePage = () => {
       <Box
         component="header"
         display="flex"
-        alignItems="flexStart"
+        alignItems="center"
         justifyContent="spaceBetween"
-        paddingTop="large"
+        paddingY="large"
         paddingX="large"
       >
-        <Link
-          to="/"
-          style={{
-            textDecoration: 'none',
-          }}
-        >
+        <ReactRouterLink to="/" style={{ textDecoration: 'none' }}>
           <Logo />
-        </Link>
+        </ReactRouterLink>
+        <Box display="flex">
+          <Box paddingRight="xlarge">
+            <Link to="/documentation" size="small">
+              Documentation
+            </Link>
+          </Box>
+          <Link to="https://github.com/seek-oss/library-name" size="small">
+            Github
+          </Link>
+        </Box>
       </Box>
-      <ContentBlock>
-        <Heading level="1">
-          The zero-runtime CSS-in-TypeScript preprocessor.
-        </Heading>
-      </ContentBlock>
+      <Box
+        display="flex"
+        alignItems="center"
+        style={{ height: '30vh', minHeight: '400px', background: '#94F6C9' }}
+      >
+        <ContentBlock>
+          <Heading level="1">
+            The zero-runtime CSS-in-TypeScript preprocessor.
+          </Heading>
+          <Text>
+            Write your styles in TypeScript (or JavaScript) with locally scoped
+            class names and CSS Variables, then generate static CSS files at
+            build time.
+          </Text>
+          <Box style={{ maxWidth: 400, margin: '0 auto' }}>
+            <Code language="bash">$ npm install @mattsjones/css-core</Code>
+          </Box>
+        </ContentBlock>
+      </Box>
     </>
   );
 };

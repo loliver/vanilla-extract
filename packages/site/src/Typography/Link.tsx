@@ -2,8 +2,8 @@ import React from 'react';
 import { Link, NavLinkProps } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import classnames from 'classnames';
-import * as styles from './typography.css';
-import * as linkStyles from './Link.css';
+import * as textStyles from './typography.css';
+import * as styles from './Link.css';
 
 interface LinkProps extends NavLinkProps {
   baseline?: boolean;
@@ -18,11 +18,11 @@ export default ({
 }: LinkProps) => {
   const classNames = classnames(
     className,
-    linkStyles.link,
-    styles.font.body,
-    styles.text[size].base,
+    styles.link,
+    textStyles.font.body,
+    textStyles.text[size].base,
     {
-      [styles.text[size].trims]: baseline,
+      [textStyles.text[size].trims]: baseline,
     },
   );
 
@@ -36,9 +36,7 @@ export default ({
 
   return (
     <Link
-      onClick={() => {
-        window.scrollTo(0, 0);
-      }}
+      onClick={() => window.scrollTo(0, 0)}
       to={to}
       {...restProps}
       className={classNames}
