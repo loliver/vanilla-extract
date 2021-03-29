@@ -1,4 +1,4 @@
-# 🧁
+# 🧁 vanilla-extract
 
 **Zero-runtime Stylesheets-in-TypeScript.**
 
@@ -15,6 +15,8 @@ Basically, it’s [“CSS Modules](https://github.com/css-modules/css-modules)-i
 🔥 &nbsp; All styles generated at build time — just like [Sass](https://sass-lang.com), [Less](http://lesscss.org), etc.
 
 ✨ &nbsp; Minimal abstraction over standard CSS.
+
+🦄 &nbsp; Works with any front-end framework — or even without one.
 
 🌳 &nbsp; Locally scoped class names — just like [CSS Modules.](https://github.com/css-modules/css-modules)
 
@@ -35,7 +37,7 @@ Basically, it’s [“CSS Modules](https://github.com/css-modules/css-modules)-i
 ```ts
 // styles.css.ts
 
-import { createTheme, style } from '@mattsjones/css-core';
+import { createTheme, style } from '@vanilla-extract/css';
 
 export const [themeClass, themeVars] = createTheme({
   color: {
@@ -76,19 +78,18 @@ document.write(`
 - [API](#api)
   - [style](#style)
   - [globalStyle](#globalstyle)
+  - [mapToStyles](#maptostyles)
   - [createTheme](#createtheme)
   - [createGlobalTheme](#createglobaltheme)
+  - [createInlineTheme](#createinlinetheme)
   - [createThemeVars](#createthemevars)
+  - [assignVars](#assignvars)
+  - [createVar](#createvar)
+  - [fallbackVar](#fallbackvar)
   - [fontFace](#fontface)
   - [globalFontFace](#globalfontface)
   - [keyframes](#keyframes)
   - [globalKeyframes](#globalkeyframes)
-- [Advanced API](#advanced-api)
-  - [mapToStyles](#maptostyles)
-  - [createVar](#createvar)
-  - [fallbackVar](#fallbackvar)
-  - [assignVars](#assignvars)
-  - [createInlineTheme](#createinlinetheme)
 - [Utility functions](#utility-functions)
   - [calc](#calc)
 - [Thanks](#thanks)
@@ -101,24 +102,24 @@ document.write(`
 1. Install the dependencies.
 
 ```bash
-$ yarn add --dev @mattsjones/css-core @mattsjones/css-babel-plugin @mattsjones/css-webpack-plugin
+$ yarn add --dev @vanilla-extract/css @vanilla-extract/babel-plugin @vanilla-extract/webpack-plugin
 ```
 
 2. Add the [Babel](https://babeljs.io) plugin.
 
 ```json
 {
-  "plugins": ["@mattsjones/css-babel-plugin"]
+  "plugins": ["@vanilla-extract/babel-plugin"]
 }
 ```
 
 3. Add the [webpack](https://webpack.js.org) plugin.
 
 ```js
-const { TreatPlugin } = require('@mattsjones/css-webpack-plugin');
+const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin');
 
 module.exports = {
-  plugins: [new TreatPlugin()],
+  plugins: [new VanillaExtractPlugin()],
 };
 ```
 
@@ -129,12 +130,12 @@ module.exports = {
   For example:
   
   ```js
-  const { TreatPlugin } = require('@mattsjones/css-webpack-plugin');
+  const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin');
   const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
   module.exports = {
     plugins: [
-      new TreatPlugin(),
+      new VanillaExtractPlugin(),
       new MiniCssExtractPlugin()
     ],
     module: {
@@ -161,17 +162,17 @@ module.exports = {
 Creates styles attached to a locally scoped class name.
 
 ```ts
-import { style } from '@mattsjones/css-core';
+import { style } from '@vanilla-extract/css';
 
 export const className = style({
   display: 'flex'
 });
 ```
 
-CSS Variables (custom properties), simple pseudos, selectors and media/feature queries are all supported.
+CSS Variables, simple pseudos, selectors and media/feature queries are all supported.
 
 ```ts
-import { style } from '@mattsjones/css-core';
+import { style } from '@vanilla-extract/css';
 
 export const className = style({
   display: 'flex',
@@ -202,7 +203,7 @@ export const className = style({
 Selectors can also contain references to other scoped class names.
 
 ```ts
-import { style } from '@mattsjones/css-core';
+import { style } from '@vanilla-extract/css';
 
 export const parentClass = style({});
 
@@ -220,11 +221,43 @@ export const childClass = style({
 Creates styles attached to a global selector.
 
 ```ts
-import { globalStyle } from '@mattsjones/css-core';
+import { globalStyle } from '@vanilla-extract/css';
 
 globalStyle('html, body', {
   margin: 0
 });
+```
+
+### mapToStyles
+
+Creates an object that maps style names to hashed class names.
+
+> 💡 This is useful for mapping to component props, e.g. `<div className={styles.padding[props.padding]}>`
+
+```ts
+import { mapToStyles } from '@vanilla-extract/css';
+
+export const padding = mapToStyles({
+  small: { padding: 4 },
+  medium: { padding: 8 },
+  large: { padding: 16 }
+});
+```
+
+You can also transform the values by providing a map function as the second argument.
+
+```ts
+import { mapToStyles } from '@vanilla-extract/css';
+
+const spaceScale = {
+  small: 4,
+  medium: 8,
+  large: 16
+};
+
+export const padding = mapToStyles(spaceScale, (space) => ({
+  padding: space
+}));
 ```
 
 ### createTheme
@@ -232,7 +265,7 @@ globalStyle('html, body', {
 Creates a locally scoped theme class and a collection of scoped CSS Variables.
 
 ```ts
-import { createTheme, style } from '@mattsjones/css-core';
+import { createTheme, style } from '@vanilla-extract/css';
 
 export const [themeClass, themeVars] = createTheme({
   color: {
@@ -247,7 +280,7 @@ export const [themeClass, themeVars] = createTheme({
 You can create theme variants by passing a collection of theme variables as the first argument to `createTheme`.
 
 ```ts
-import { createTheme, style } from '@mattsjones/css-core';
+import { createTheme, style } from '@vanilla-extract/css';
 
 export const [themeA, themeVars] = createTheme({
   color: {
@@ -275,7 +308,7 @@ export const themeB = createTheme(themeVars, {
 Creates a theme attached to a global selector, but with locally scoped variable names.
 
 ```ts
-import { createGlobalTheme } from '@mattsjones/css-core';
+import { createGlobalTheme } from '@vanilla-extract/css';
 
 export const themeVars = createGlobalTheme(':root', {
   color: {
@@ -289,6 +322,27 @@ export const themeVars = createGlobalTheme(':root', {
 
 > 💡 All theme variants must provide a value for every variable or it’s a type error.
 
+### createInlineTheme
+
+Generates a custom theme at runtime as an inline style object.
+
+```ts
+import { createInlineTheme } from '@vanilla-extract/css/createInlineTheme';
+import { themeVars, exampleStyle } from './styles.css.ts';
+
+const customTheme = createInlineTheme(themeVars, {
+  small: '4px',
+  medium: '8px',
+  large: '16px'
+});
+
+document.write(`
+  <section style="${customTheme}">
+    <h1 class="${exampleStyle}">Hello world!</h1>
+  </section>
+`);
+```
+
 ### createThemeVars
 
 Creates a collection of CSS Variables without coupling them to a specific theme variant.
@@ -299,7 +353,7 @@ Creates a collection of CSS Variables without coupling them to a specific theme 
 import {
   createThemeVars,
   createTheme
-} from '@mattsjones/css-core';
+} from '@vanilla-extract/css';
 
 export const themeVars = createThemeVars({
   color: {
@@ -329,12 +383,103 @@ export const themeB = createTheme(themeVars, {
 });
 ```
 
+### assignVars
+
+Allows you to set an entire collection of CSS Variables anywhere within a style block.
+
+> 💡 This is useful for creating responsive themes since it can be used within `@media` blocks.
+
+```ts
+import { style, createThemeVars, assignVars } from '@vanilla-extract/css';
+
+export const themeVars = createThemeVars({
+  space: {
+    small: null,
+    medium: null,
+    large: null
+  }
+});
+
+export const responsiveSpaceTheme = style({
+  vars: assignVars(themeVars.space, {
+    small: '4px',
+    medium: '8px',
+    large: '16px'
+  }),
+  '@media': {
+    'screen and (min-width: 1024px)': {
+      vars: assignVars(themeVars.space, {
+        small: '8px',
+        medium: '16px',
+        large: '32px'
+      })
+    }
+  }
+});
+```
+
+> 💡 All variables passed into this function must be assigned or it’s a type error.
+
+### createVar
+
+Creates a single CSS Variable.
+
+```ts
+import { createVar, style } from '@vanilla-extract/css';
+
+export const colorVar = createVar();
+
+export const exampleStyle = style({
+  color: colorVar
+});
+```
+
+Scoped variables can be set via the `vars` property on style objects.
+
+```ts
+import { createVar, style } from '@vanilla-extract/css';
+import { colorVar } from './vars.css.ts';
+
+export const parentStyle = style({
+  vars: {
+    [colorVar]: 'blue'
+  }
+});
+```
+
+### fallbackVar
+
+Provides fallback values when consuming variables.
+
+```ts
+import { createVar, fallbackVar, style } from '@vanilla-extract/css';
+
+export const colorVar = createVar();
+
+export const exampleStyle = style({
+  color: fallbackVar(colorVar, 'blue');
+});
+```
+
+Multiple fallbacks are also supported.
+
+```ts
+import { createVar, fallbackVar, style } from '@vanilla-extract/css';
+
+export const primaryColorVar = createVar();
+export const secondaryColorVar = createVar();
+
+export const exampleStyle = style({
+  color: fallbackVar(primaryColorVar, secondaryColorVar, 'blue');
+});
+```
+
 ### fontFace
 
 Creates a custom font attached to a locally scoped font name.
 
 ```ts
-import { fontFace, style } from '@mattsjones/css-core';
+import { fontFace, style } from '@vanilla-extract/css';
 
 const myFont = fontFace({
   src: 'local("Comic Sans MS")'
@@ -353,7 +498,7 @@ Creates a globally scoped custom font.
 import {
   globalFontFace,
   style
-} from '@mattsjones/css-core';
+} from '@vanilla-extract/css';
 
 globalFontFace('MyGlobalFont', {
   src: 'local("Comic Sans MS")'
@@ -369,7 +514,7 @@ export const text = style({
 Creates a locally scoped set of keyframes.
 
 ```ts
-import { keyframes, style } from '@mattsjones/css-core';
+import { keyframes, style } from '@vanilla-extract/css';
 
 const rotate = keyframes({
   '0%': { rotate: '0deg' },
@@ -386,7 +531,7 @@ export const animated = style({
 Creates a globally scoped set of keyframes.
 
 ```ts
-import { globalKeyframes, style } from '@mattsjones/css-core';
+import { globalKeyframes, style } from '@vanilla-extract/css';
 
 globalKeyframes('rotate', {
   '0%': { rotate: '0deg' },
@@ -398,147 +543,6 @@ export const animated = style({
 });
 ```
 
----
-
-## Advanced API
-
-### mapToStyles
-
-Creates an object that maps style names to hashed class names.
-
-> 💡 This is useful for mapping to component props, e.g. `<div className={styles.padding[props.padding]}>`
-
-```ts
-import { mapToStyles } from '@mattsjones/css-core';
-
-export const padding = mapToStyles({
-  small: { padding: 4 },
-  medium: { padding: 8 },
-  large: { padding: 16 }
-});
-```
-
-You can also transform the values by providing a map function as the second argument.
-
-```ts
-import { mapToStyles } from '@mattsjones/css-core';
-
-const spaceScale = {
-  small: 4,
-  medium: 8,
-  large: 16
-};
-
-export const padding = mapToStyles(spaceScale, (space) => ({
-  padding: space
-}));
-```
-
-### createVar
-
-Creates a single CSS Variable.
-
-```ts
-import { createVar, style } from '@mattsjones/css-core';
-
-export const colorVar = createVar();
-
-export const exampleStyle = style({
-  color: colorVar
-});
-```
-
-Scoped variables can be set via the `vars` property on style objects.
-
-```ts
-import { createVar, style } from '@mattsjones/css-core';
-import { colorVar } from './vars.css.ts';
-
-export const parentStyle = style({
-  vars: {
-    [colorVar]: 'blue'
-  }
-});
-```
-
-### fallbackVar
-
-Provides fallback values when consuming variables.
-
-```ts
-import { createVar, fallbackVar, style } from '@mattsjones/css-core';
-
-export const colorVar = createVar();
-
-export const exampleStyle = style({
-  color: fallbackVar(colorVar, 'blue');
-});
-```
-
-Multiple fallbacks are also supported.
-
-```ts
-import { createVar, fallbackVar, style } from '@mattsjones/css-core';
-
-export const primaryColorVar = createVar();
-export const secondaryColorVar = createVar();
-
-export const exampleStyle = style({
-  color: fallbackVar(primaryColorVar, secondaryColorVar, 'blue');
-});
-```
-
-### assignVars
-
-Allows you to set an entire collection of CSS Variables anywhere within a style block.
-
-> 💡 This is useful for creating responsive themes since it can be used within an `@media` block.
-
-```ts
-import { style, assignVars } from '@mattsjones/css-core';
-import { themeVars } from './vars.css.ts';
-
-export const exampleStyle = style({
-  vars: assignVars(themeVars.space, {
-    small: 4,
-    medium: 8,
-    large: 16
-  }),
-  '@media': {
-    'screen and (min-width: 1024px)': {
-      vars: assignVars(themeVars.space, {
-        small: 8,
-        medium: 16,
-        large: 32
-      })
-    }
-  }
-});
-```
-
-> 💡 All variables passed into this function must be assigned or it’s a type error.
-
-### createInlineTheme
-
-Generates a custom theme at runtime as an inline style object.
-
-```ts
-import { createInlineTheme } from '@mattsjones/css-core/createInlineTheme';
-import { themeVars, exampleStyle } from './styles.css.ts';
-
-const customTheme = createInlineTheme(themeVars, {
-  small: 4,
-  medium: 8,
-  large: 16
-});
-
-document.write(`
-  <section style="${customTheme}">
-    <h1 class="${exampleStyle}">Hello world!</h1>
-  </section>
-`);
-```
-
 ## Utility functions
 
 We also provide a standalone package of optional utility functions to make it easier to work with CSS in TypeScript.
@@ -546,7 +550,7 @@ We also provide a standalone package of optional utility functions to make it ea
 > 💡 This package can be used with any CSS-in-JS library.
 
 ```bash
-$ yarn add --dev @mattsjones/css-utils
+$ yarn add --dev @vanilla-extract/css-utils
 ```
 
 ### calc
@@ -554,7 +558,7 @@ $ yarn add --dev @mattsjones/css-utils
 Streamlines the creation of CSS calc expressions.
 
 ```ts
-import { calc } from '@mattsjones/css-utils';
+import { calc } from '@vanilla-extract/css-utils';
 
 const styles = {
   height: calc.multiply('var(--grid-unit)', 2)
@@ -572,7 +576,7 @@ The following functions are available.
 The `calc` export is also a function, providing a chainable API for complex calc expressions.
 
 ```ts
-import { calc } from '@mattsjones/css-utils';
+import { calc } from '@vanilla-extract/css-utils';
 
 const styles = {
   marginTop: calc('var(--space-large)')

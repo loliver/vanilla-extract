@@ -1,21 +1,21 @@
 {
-  "name": "treat-next",
-  "version": "1.0.0",
+  "name": "vanilla-extract",
+  "version": "0.0.0",
   "private": true,
   "author": "SEEK",
   "license": "MIT",
   "scripts": {
     "dev": "preconstruct dev",
     "build": "preconstruct build",
-    "start-fixture": "ts-node ./test-helpers/src/startFixtureCLI",
+    "start-fixture": "ts-node --log-error ./test-helpers/src/startFixtureCLI",
     "start": "yarn start-fixture themed",
     "start-site": "manypkg run css-docs-site start",
     "postinstall": "yarn dev",
     "test": "jest",
     "format": "prettier --write .",
     "lint": "manypkg check && prettier --check . && tsc",
-    "version": "yarn lint && yarn test && yarn build && changeset version",
-    "release": "changeset publish"
+    "copy-readme-to-packages": "ts-node scripts/copy-readme-to-packages",
+    "release": "yarn copy-readme-to-packages && yarn build && changeset publish"
   },
   "workspaces": [
     "packages/*",

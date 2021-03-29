@@ -1,9 +1,12 @@
-import { TreatPlugin } from '@mattsjones/css-webpack-plugin';
+import { VanillaExtractPlugin } from '@vanilla-extract/webpack-plugin';
 import WDS from 'webpack-dev-server';
 import webpack, { Configuration } from 'webpack';
+import portfinder from 'portfinder';
 import webpackMerge from 'webpack-merge';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+
+import { stylesheetName } from './getStylesheet';
 
 export const getTestNodes = (fixture: string) =>
   require(`@fixtures/${fixture}/test-nodes.json`);
@@ -12,8 +15,10 @@ const defaultWebpackConfig: Configuration = {
   resolve: {
     extensions: ['.js', '.json', '.ts', '.tsx'],
   },
-  mode: 'development',
   devtool: 'source-map',
+  optimization: {
+    minimize: false,
+  },
   module: {
     rules: [
       {
@@ -32,14 +37,19 @@ const defaultWebpackConfig: Configuration = {
                   { targets: { node: 14 }, modules: false },
                 ],
               ],
-              plugins: ['@mattsjones/css-babel-plugin'],
+              plugins: ['@vanilla-extract/babel-plugin'],
             },
           },
         ],
       },
     ],
   },
-  plugins: [new HtmlWebpackPlugin(), new MiniCssExtractPlugin()],
+  plugins: [
+    new HtmlWebpackPlugin(),
+    new MiniCssExtractPlugin({
+      filename: stylesheetName,
+    }),
+  ],
 };
 
 type StyleType = 'browser' | 'mini-css-extract' | 'style-loader';
@@ -50,23 +60,39 @@ export interface TestServer {
   close: () => void;
 }
 
-let portCounter = 11000;
-
 export interface FixtureOptions {
   type?: StyleType;
   hot?: boolean;
+  mode?: 'development' | 'production';
+  basePort?: number;
+  logLevel?: Configuration['stats'];
 }
 export const startFixture = (
   fixtureName: string,
-  { type = 'mini-css-extract', hot = false }: FixtureOptions = {},
+  {
+    type = 'mini-css-extract',
+    hot = false,
+    mode = 'development',
+    basePort,
+    logLevel = 'errors-only',
+  }: FixtureOptions = {},
 ): Promise<TestServer> =>
   new Promise(async (resolve) => {
     console.log(
-      `Starting ${fixtureName} fixture using ${type}${hot ? ' with HMR' : ''}`,
+      [
+        `Starting ${fixtureName} fixture`,
+        ...Object.entries({
+          type,
+          hot,
+          mode,
+        }).map(([key, value]) => `- ${key}: ${value}`),
+      ].join('\n'),
     );
+
     const fixtureEntry = require.resolve(`@fixtures/${fixtureName}`);
     const config = webpackMerge<Configuration>(defaultWebpackConfig, {
       entry: fixtureEntry,
+      mode,
       module: {
         rules: [
           {
@@ -80,13 +106,15 @@ export const startFixture = (
           },
         ],
       },
-      plugins: type !== 'browser' ? [new TreatPlugin()] : undefined,
+      plugins: type !== 'browser' ? [new VanillaExtractPlugin()] : undefined,
     });
     const compiler = webpack(config);
 
-    const port = portCounter++;
+    const port = await portfinder.getPortPromise({ port: basePort });
     const server = new WDS(compiler, {
       hot,
+      stats: logLevel,
+      noInfo: true,
     });
 
     compiler.hooks.done.tap('vanilla-extract-test-helper', () => {
