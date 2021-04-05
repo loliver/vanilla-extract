@@ -95,33 +95,45 @@
         "breadcrumbs": [
           "Setup"
         ],
-        "content": "  Install the core package.",
+        "content": "  There are currently a few integrations to choose from.",
         "page": "Setup",
         "hash": "setup"
       },
       {
-        "raw": "## Babel Setup",
+        "raw": "## Webpack",
         "level": 2,
-        "name": "Babel Setup",
+        "name": "Webpack",
         "breadcrumbs": [
           "Setup",
-          "Babel Setup"
+          "Webpack"
         ],
-        "content": "  Add the Babel plugin.",
+        "content": "  Install the dependencies.",
         "page": "Setup",
-        "hash": "babel-setup"
+        "hash": "webpack"
       },
       {
-        "raw": "## Webpack Setup",
+        "raw": "## esbuild",
         "level": 2,
-        "name": "Webpack Setup",
+        "name": "esbuild",
         "breadcrumbs": [
           "Setup",
-          "Webpack Setup"
+          "esbuild"
         ],
-        "content": "  Add the webpack plugin.",
+        "content": "  Current limitations:  - No automatic readable class names during development. However, you can still manually provide a debug ID as the last argument to functions that generate scoped styles, e.g. export const className = style({ ... }, 'className'); - The projectRoot plugin option must be set to get deterministic class name hashes between build systems  1. Install the dependencies.",
         "page": "Setup",
-        "hash": "webpack-setup"
+        "hash": "esbuild"
+      },
+      {
+        "raw": "## Gatsby",
+        "level": 2,
+        "name": "Gatsby",
+        "breadcrumbs": [
+          "Setup",
+          "Gatsby"
+        ],
+        "content": "  To add to your Gatsby site, use the gatsby-plugin-vanilla-extract plugin.",
+        "page": "Setup",
+        "hash": "gatsby"
       }
     ]
   },
@@ -137,7 +149,7 @@
         "breadcrumbs": [
           "API"
         ],
-        "content": "",
+        "content": "🍬 If you're a treat user, check out our migration guide.",
         "page": "API",
         "hash": "api"
       },
@@ -233,7 +245,7 @@
           "API",
           "assignVars"
         ],
-        "content": "  Allows you to set an entire collection of CSS Variables anywhere within a style block.  > 💡 This is useful for creating responsive themes since it can be used within an @media block.    > 💡 All variables passed into this function must be assigned or it’s a type error.",
+        "content": "  Allows you to set an entire collection of CSS Variables anywhere within a style block.  > 💡 This is useful for creating responsive themes since it can be used within @media blocks.    > 💡 All variables passed into this function must be assigned or it’s a type error.",
         "page": "API",
         "hash": "assignvars"
       },

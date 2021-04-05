@@ -4,6 +4,8 @@ title: API
 
 # API
 
+> 🍬 If you're a [treat](https://seek-oss.github.io/treat) user, check out our [migration guide.](./docs/treat-migration-guide.md)
+
 ## style
 
 Creates styles attached to a locally scoped class name.
@@ -178,9 +180,9 @@ import { createInlineTheme } from '@vanilla-extract/css';
 import { themeVars, exampleStyle } from './styles.css.ts';
 
 const customTheme = createInlineTheme(themeVars, {
-  small: 4,
-  medium: 8,
-  large: 16
+  small: '4px',
+  medium: '8px',
+  large: '16px'
 });
 
 document.write(`
@@ -234,24 +236,31 @@ export const themeB = createTheme(themeVars, {
 
 Allows you to set an entire collection of CSS Variables anywhere within a style block.
 
-> 💡 This is useful for creating responsive themes since it can be used within an `@media` block.
+> 💡 This is useful for creating responsive themes since it can be used within `@media` blocks.
 
 ```ts
-import { style, assignVars } from '@vanilla-extract/css';
-import { themeVars } from './vars.css.ts';
+import { style, createThemeVars, assignVars } from '@vanilla-extract/css';
 
-export const exampleStyle = style({
+export const themeVars = createThemeVars({
+  space: {
+    small: null,
+    medium: null,
+    large: null
+  }
+});
+
+export const responsiveSpaceTheme = style({
   vars: assignVars(themeVars.space, {
-    small: 4,
-    medium: 8,
-    large: 16
+    small: '4px',
+    medium: '8px',
+    large: '16px'
   }),
   '@media': {
     'screen and (min-width: 1024px)': {
       vars: assignVars(themeVars.space, {
-        small: 8,
-        medium: 16,
-        large: 32
+        small: '8px',
+        medium: '16px',
+        large: '32px'
       })
     }
   }
