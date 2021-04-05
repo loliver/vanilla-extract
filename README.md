@@ -75,6 +75,9 @@ document.write(`
 ---
 
 - [Setup](#setup)
+  - [webpack](#webpack)
+  - [esbuild](#esbuild)
+  - [Gatsby](#gatsby)
 - [API](#api)
   - [style](#style)
   - [globalStyle](#globalstyle)
@@ -98,6 +101,10 @@ document.write(`
 ---
 
 ## Setup
+
+There are currently a few integrations to choose from.
+
+### webpack
 
 1. Install the dependencies.
 
@@ -153,9 +160,41 @@ module.exports = {
   ```
 </details>
 
+### esbuild
+
+Current limitations:
+
+- No automatic readable class names during development. However, you can still manually provide a debug ID as the last argument to functions that generate scoped styles, e.g. `export const className = style({ ... }, 'className');`
+- The `projectRoot` plugin option must be set to get deterministic class name hashes between build systems
+
+1. Install the dependencies.
+
+```bash
+$ yarn add --dev @vanilla-extract/css @vanilla-extract/esbuild-plugin
+```
+
+2. Add the [esbuild](https://esbuild.github.io/) plugin to your build script.
+
+```js
+const { vanillaExtractPlugin } = require('@vanilla-extract/esbuild-plugin');
+
+require('esbuild').build({
+  entryPoints: ['app.ts'],
+  bundle: true,
+  plugins: [vanillaExtractPlugin({ projectRoot: '...' })],
+  outfile: 'out.js',
+}).catch(() => process.exit(1))
+```
+
+### Gatsby
+
+To add to your [Gatsby](https://www.gatsbyjs.com) site, use the [gatsby-plugin-vanilla-extract](https://github.com/KyleAMathews/gatsby-plugin-vanilla-extract) plugin.
+
 ---
 
 ## API
+
+> 🍬 If you're a [treat](https://seek-oss.github.io/treat) user, check out our [migration guide.](./docs/treat-migration-guide.md)
 
 ### style
 
