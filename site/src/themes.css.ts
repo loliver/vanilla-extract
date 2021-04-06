@@ -41,7 +41,7 @@ const palette = {
   },
   blue: {
     700: '#376C8F',
-    600: '#4A88B4',
+    600: '#437CA4',
     500: '#5FA4DA',
     400: '#76C0FF',
     300: '#8AD2FF',
@@ -50,7 +50,7 @@ const palette = {
   },
   pink: {
     700: '#8F448F',
-    600: '#B35BB4',
+    600: '#',
     500: '#D375D7',
     400: '#F090F5',
     300: '#F6ABFA',
@@ -115,7 +115,7 @@ export const [themeClass, themeVars] = createTheme({
     small: px(2 * grid),
     medium: px(3 * grid),
     large: px(5 * grid),
-    xlarge: px(9 * grid),
+    xlarge: px(8 * grid),
     xxlarge: px(12 * grid),
     xxxlarge: px(20 * grid),
   },
@@ -223,6 +223,7 @@ export const [themeClass, themeVars] = createTheme({
     strong: '#26232c',
     neutral: palette.grey[700],
     code: palette.grey[100],
+    link: palette.blue[600],
   },
   background: {
     body: '#fff',

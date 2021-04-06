@@ -15,6 +15,7 @@ export const Stack = ({
     <Box>
       {stackItems.map((item, index) => (
         <Box
+          key={index}
           paddingBottom={index !== stackItems.length - 1 ? space : undefined}
         >
           {item}

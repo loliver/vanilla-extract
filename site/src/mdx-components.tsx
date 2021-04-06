@@ -84,19 +84,19 @@ export default {
     </Box>
   ),
   p: P,
-  h1: (props: HeadingProps) => (
-    <Box marginBottom="xxlarge">
-      <Heading {...props} level="1" component="h1" />
+  h1: ({ component, ...props }: HeadingProps) => (
+    <Box component="h1" marginBottom="xxlarge">
+      <Heading component="span" {...props} level="1" />
     </Box>
   ),
-  h2: (props: HeadingProps) => (
-    <Box marginBottom="xxlarge">
-      <Heading {...props} level="3" component="h2" />
+  h2: ({ component, ...props }: HeadingProps) => (
+    <Box component="h2" marginBottom="xlarge">
+      <Heading component="span" {...props} level="3" />
     </Box>
   ),
-  h3: (props: HeadingProps) => (
-    <Box marginBottom="xlarge">
-      <Heading {...props} level="3" component="h3" />
+  h3: ({ component, ...props }: HeadingProps) => (
+    <Box component="h3" marginBottom="xlarge">
+      <Heading component="span" {...props} level="3" />
     </Box>
   ),
   pre: Pre,

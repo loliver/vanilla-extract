@@ -15,7 +15,10 @@ export default ({
   className,
   ...restProps
 }: LinkProps) => {
-  const classNames = classnames(className, useTextStyles({ size, baseline }));
+  const classNames = classnames(
+    className,
+    useTextStyles({ size, color: 'link', baseline }),
+  );
 
   if (typeof to === 'string' && /^http/.test(to)) {
     return <a href={to} {...restProps} className={classNames} />;

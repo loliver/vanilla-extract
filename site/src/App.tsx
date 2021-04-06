@@ -11,23 +11,10 @@ import Navigation from './Navigation/Navigation';
 import { Fab } from './Fab/Fab';
 import { Heading } from './Typography/Heading';
 import Link from './Typography/Link';
-import Code from './Code/Code';
 import Text from './Typography/Text';
 import { Stack, ContentBlock } from './system';
 import { Title, Meta } from 'react-head';
-
-const Logo = () => (
-  <Box
-    display="flex"
-    alignItems="center"
-    style={{
-      fontSize: 50,
-    }}
-  >
-    <Box marginRight="medium">🧁</Box>
-    <Heading level="2">vanilla-extract</Heading>
-  </Box>
-);
+import Logo from './Logo/Logo';
 
 const DocumentationPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -46,7 +33,12 @@ const DocumentationPage = () => {
         className={styles.header}
       >
         <ReactRouterLink to="/" style={{ textDecoration: 'none' }}>
-          <Logo />
+          <Box display="flex" alignItems="center">
+            <Box marginRight="medium">
+              <Logo size={40} />
+            </Box>
+            <Heading level="3">vanilla-extract</Heading>
+          </Box>
         </ReactRouterLink>
         <Box paddingTop="small">
           <Fab open={menuOpen} onClick={toggleMenu} />
@@ -92,9 +84,18 @@ const HomePage = () => {
         justifyContent="spaceBetween"
         paddingY="large"
         paddingX="large"
+        style={{
+          position: 'relative',
+          boxShadow: '0 -10px 20px 0 #20734D',
+        }}
       >
         <ReactRouterLink to="/" style={{ textDecoration: 'none' }}>
-          <Logo />
+          <Box display="flex" alignItems="center">
+            <Box marginRight="medium">
+              <Logo size={40} />
+            </Box>
+            <Heading level="3">vanilla-extract</Heading>
+          </Box>
         </ReactRouterLink>
         <Box display="flex">
           <Box paddingRight="xlarge">
@@ -110,26 +111,53 @@ const HomePage = () => {
       <Box
         display="flex"
         alignItems="center"
-        style={{ height: '30vh', minHeight: '400px', background: '#94F6C9' }}
+        style={{
+          height: '30vh',
+          minHeight: '400px',
+          background: '#D0FDE8',
+        }}
+        paddingBottom="xlarge"
       >
-        <ContentBlock>
-          <Stack space="xxlarge">
-            <Heading level="1">
-              The zero-runtime CSS-in-TypeScript preprocessor.
-            </Heading>
-            <Text>
-              Write your styles in TypeScript (or JavaScript) with locally
-              scoped class names and CSS Variables, then generate static CSS
-              files at build time.
-            </Text>
-            <Box style={{ maxWidth: 600, margin: '0 auto' }}>
-              <Code language="bash">
-                $ npm install --save-dev @vanilla-extract/css
-              </Code>
-            </Box>
-          </Stack>
+        <ContentBlock guttersOnMobile>
+          <Box
+            style={{
+              maxWidth: 700,
+              minWidth: '250px',
+            }}
+          >
+            <Stack space="xxlarge">
+              <Heading level="1">
+                The zero-runtime
+                <br />
+                CSS-in-TypeScript
+                <br />
+                preprocessor.
+              </Heading>
+              <Text>
+                Write your styles in TypeScript (or JavaScript) with locally
+                scoped class names and CSS Variables, then generate static CSS
+                files at build time.
+              </Text>
+            </Stack>
+          </Box>
         </ContentBlock>
       </Box>
+
+      <ContentBlock guttersOnMobile>
+        <Box
+          padding={{ mobile: 'xlarge', desktop: 'xxlarge' }}
+          style={{
+            transform: 'translateY(-50%)',
+            background: 'white',
+            borderRadius: '28px',
+            boxShadow: '0 0 50px -10px #24966180',
+            fontFamily: '"Roboto Mono", Menlo, monospace',
+          }}
+        >
+          $ npm install <span style={{ whiteSpace: 'nowrap' }}>--save-dev</span>{' '}
+          <span style={{ whiteSpace: 'nowrap' }}>@vanilla-extract/css</span>
+        </Box>
+      </ContentBlock>
     </>
   );
 };

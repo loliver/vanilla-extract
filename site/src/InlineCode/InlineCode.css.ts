@@ -6,6 +6,6 @@ export const code = style({
   color: themeVars.palette.pink['700'],
   background: themeVars.palette.pink['100'],
   padding: '8px',
-  margin: '-8px 0',
+  margin: '-8px 4px',
   borderRadius: themeVars.border.radius.small,
 });
