@@ -6,7 +6,7 @@ title: Introduction
 
 Write your styles in TypeScript (or JavaScript) with locally scoped class names and CSS Variables, then generate static CSS files at build time.
 
-Basically, it’s [“CSS Modules](https://github.com/css-modules/css-modules)-in-TypeScript” but with scoped CSS Variables + heaps more.
+Basically, it’s “[CSS Modules](https://github.com/css-modules/css-modules)-in-TypeScript” but with scoped CSS Variables + heaps more.
 
 > **🚧 &nbsp; Please note, this is an alpha release.**
 

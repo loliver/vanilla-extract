@@ -5,6 +5,7 @@ import * as styles from './Blockquote.css';
 export default (props: { children: ReactNode }) => {
   return (
     <Box
+      component="blockquote"
       paddingLeft="xlarge"
       paddingRight="xlarge"
       paddingTop="xlarge"

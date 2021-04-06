@@ -1,7 +1,11 @@
 import { style } from '@vanilla-extract/css';
 import { themeVars } from '../themes.css';
 
-export const subLink = style({
+export const sectionLinkTitle = style({
+  textTransform: 'uppercase',
+});
+
+export const underlineOnHover = style({
   selectors: {
     ['&:not(:hover)']: {
       textDecoration: 'none',

@@ -9,13 +9,10 @@ There are currently a few integrations to choose from.
 ## Webpack
 
 1. Install the dependencies.
-
 ```bash
-$ yarn add --dev @vanilla-extract/css @vanilla-extract/babel-plugin @vanilla-extract/webpack-plugin
+$ npm install --save-dev @vanilla-extract/css @vanilla-extract/babel-plugin @vanilla-extract/webpack-plugin
 ```
-
 2. Add the [Babel](https://babeljs.io) plugin.
-
 ```json
 {
   "plugins": ["@vanilla-extract/babel-plugin"]
@@ -23,7 +20,6 @@ $ yarn add --dev @vanilla-extract/css @vanilla-extract/babel-plugin @vanilla-ext
 ```
 
 3. Add the [webpack](https://webpack.js.org) plugin.
-
 ```js
 const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin');
 
@@ -36,29 +32,28 @@ module.exports = {
 > You'll also need to ensure you're handling CSS files in your webpack config.
 
 For example:
+  ```js
+  const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin');
+  const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
-```js
-const { VanillaExtractPlugin } = require('@vanilla-extract/webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-
-module.exports = {
-  plugins: [
-    new VanillaExtractPlugin(),
-    new MiniCssExtractPlugin()
-  ],
-  module: {
-    rules: [
-      {
-        test: /\.css$/i,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-        ],
-      },
+  module.exports = {
+    plugins: [
+      new VanillaExtractPlugin(),
+      new MiniCssExtractPlugin()
     ],
-  },
-};
-```
+    module: {
+      rules: [
+        {
+          test: /\.css$/i,
+          use: [
+            MiniCssExtractPlugin.loader,
+            'css-loader',
+          ],
+        },
+      ],
+    },
+  };
+  ```
 
 ## esbuild
 
@@ -68,13 +63,11 @@ Current limitations:
 - The `projectRoot` plugin option must be set to get deterministic class name hashes between build systems
 
 1. Install the dependencies.
-
 ```bash
-$ yarn add --dev @vanilla-extract/css @vanilla-extract/esbuild-plugin
+$ npm install --save-dev @vanilla-extract/css @vanilla-extract/esbuild-plugin
 ```
 
 2. Add the [esbuild](https://esbuild.github.io/) plugin to your build script.
-
 ```ts
 const { vanillaExtractPlugin } = require('@vanilla-extract/esbuild-plugin');
 

@@ -5,15 +5,24 @@ export const root = style({
   backgroundColor: themeVars.background.code,
   borderRadius: themeVars.border.width.large,
   overflowX: 'auto',
+  color: themeVars.color.code,
 });
 
-const tokenSelector = (tokenName: string) => `${root} .${tokenName}`;
+const tokenSelector = (...tokens: Array<string>) =>
+  tokens.map((t) => `${root} .${t}`).join(', ');
+
+globalStyle(`${root} code`, {
+  color: themeVars.color.code,
+  backgroundColor: themeVars.background.code,
+  padding: 0,
+  margin: 0,
+});
 
 globalStyle(tokenSelector('comment'), {
   color: themeVars.palette.grey[500],
 });
 
-globalStyle(['keyword', 'selector'].map(tokenSelector).join(', '), {
+globalStyle(tokenSelector('keyword', 'selector'), {
   color: themeVars.palette.blue[200],
 });
 
@@ -29,10 +38,10 @@ globalStyle(tokenSelector('property'), {
   color: 'blue',
 });
 
-globalStyle(tokenSelector('function'), {
+globalStyle(tokenSelector('function', 'property'), {
   color: themeVars.palette.pink[300],
 });
 
-globalStyle(['punctuation', 'operator'].map(tokenSelector).join(', '), {
+globalStyle(tokenSelector('punctuation', 'operator'), {
   color: themeVars.palette.grey[400],
 });

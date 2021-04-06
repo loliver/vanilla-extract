@@ -10,7 +10,7 @@ type ResponsiveProp<AtomName> =
   | AtomName
   | { [breakpoint in Breakpoint]: AtomName };
 
-interface BoxProps extends AllHTMLAttributes<HTMLElement> {
+export interface BoxProps extends AllHTMLAttributes<HTMLElement> {
   component?: ElementType;
   padding?: ResponsiveProp<Space>;
   paddingX?: ResponsiveProp<Space>;

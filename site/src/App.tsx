@@ -9,11 +9,12 @@ import { themeClass } from './themes.css';
 import * as styles from './App.css';
 import Navigation from './Navigation/Navigation';
 import { Fab } from './Fab/Fab';
-import { ContentBlock } from './system/ContentBlock/ContentBlock';
 import { Heading } from './Typography/Heading';
 import Link from './Typography/Link';
 import Code from './Code/Code';
 import Text from './Typography/Text';
+import { Stack, ContentBlock } from './system';
+import { Title, Meta } from 'react-head';
 
 const Logo = () => (
   <Box
@@ -101,7 +102,7 @@ const HomePage = () => {
               Documentation
             </Link>
           </Box>
-          <Link to="https://github.com/seek-oss/library-name" size="small">
+          <Link to="https://github.com/seek-oss/vanilla-extract" size="small">
             Github
           </Link>
         </Box>
@@ -112,26 +113,39 @@ const HomePage = () => {
         style={{ height: '30vh', minHeight: '400px', background: '#94F6C9' }}
       >
         <ContentBlock>
-          <Heading level="1">
-            The zero-runtime CSS-in-TypeScript preprocessor.
-          </Heading>
-          <Text>
-            Write your styles in TypeScript (or JavaScript) with locally scoped
-            class names and CSS Variables, then generate static CSS files at
-            build time.
-          </Text>
-          <Box style={{ maxWidth: 400, margin: '0 auto' }}>
-            <Code language="bash">$ npm install @vanilla-extract/css</Code>
-          </Box>
+          <Stack space="xxlarge">
+            <Heading level="1">
+              The zero-runtime CSS-in-TypeScript preprocessor.
+            </Heading>
+            <Text>
+              Write your styles in TypeScript (or JavaScript) with locally
+              scoped class names and CSS Variables, then generate static CSS
+              files at build time.
+            </Text>
+            <Box style={{ maxWidth: 600, margin: '0 auto' }}>
+              <Code language="bash">
+                $ npm install --save-dev @vanilla-extract/css
+              </Code>
+            </Box>
+          </Stack>
         </ContentBlock>
       </Box>
     </>
   );
 };
 
+const pageTitle = 'vanilla-extract — Zero-runtime Stylesheets-in-TypeScript.';
+const description = 'Zero-runtime Stylesheets-in-TypeScript.';
+
 export default () => {
   return (
     <div className={themeClass}>
+      <Title>{pageTitle}</Title>
+      <Meta property="og:title" content={pageTitle} />
+      <Meta name="twitter:title" content={pageTitle} />
+      <Meta name="description" content={description} />
+      <Meta property="og:description" content={description} />
+      <Meta name="twitter:description" content={description} />
       <Route path="/" exact component={HomePage} />
       <Route path="/documentation" component={DocumentationPage} />
     </div>

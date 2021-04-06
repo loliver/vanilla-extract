@@ -241,6 +241,7 @@ export const [themeClass, themeVars] = createTheme({
       large: '8px',
     },
     radius: {
+      small: '8px',
       full: '9999px',
     },
   },

@@ -1,10 +1,39 @@
 import React, { Fragment, MouseEvent, ReactNode } from 'react';
+import {
+  NavLink as ReactRouterNavLink,
+  NavLinkProps as ReactRouterNavLinkProps,
+} from 'react-router-dom';
+import classnames from 'classnames';
 import { Box } from '../system';
-import NavLink from '../Typography/NavLink';
 import docs from '../docs-store';
 import Link from '../Typography/Link';
+import { useTextStyles } from '../Typography/Text';
 import { useActiveHash } from '../useHeadingRoute';
 import * as styles from './Navigation.css';
+
+interface NavLinkProps extends ReactRouterNavLinkProps {
+  baseline?: boolean;
+  size?: 'standard' | 'small' | 'xsmall';
+}
+const NavLink = ({
+  baseline = true,
+  size = 'standard',
+  children,
+  ...restProps
+}: NavLinkProps) => {
+  return (
+    <ReactRouterNavLink
+      {...restProps}
+      className={classnames(
+        styles.sectionLinkTitle,
+        styles.underlineOnHover,
+        useTextStyles({ size, weight: 'strong', baseline }),
+      )}
+    >
+      {children}
+    </ReactRouterNavLink>
+  );
+};
 
 const NavSection = ({
   href,
@@ -52,7 +81,7 @@ const SubLink = ({
         size="small"
         to={`${to}${hash ? `#${hash}` : ''}`}
         onClick={onClick}
-        className={styles.subLink}
+        className={styles.underlineOnHover}
         style={
           active
             ? {
@@ -101,9 +130,11 @@ export default ({ onSelect }: { onSelect: () => void }) => {
       ))}
       <NavSection
         title="Community"
-        href="https://github.com/seek-oss/$library-name"
+        href="https://github.com/seek-oss/vanilla-extract"
       >
-        <SubLink to="https://github.com/seek-oss/$library-name">GitHub</SubLink>
+        <SubLink to="https://github.com/seek-oss/vanilla-extract">
+          GitHub
+        </SubLink>
       </NavSection>
     </>
   );

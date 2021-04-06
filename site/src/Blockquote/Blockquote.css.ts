@@ -9,4 +9,5 @@ export const root = style({
 
 globalStyle(`${root} *`, {
   color: themeVars.palette.blue[600],
+  background: themeVars.background.note,
 });

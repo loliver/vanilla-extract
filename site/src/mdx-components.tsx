@@ -4,7 +4,7 @@ import React, {
   ElementType,
   createElement,
 } from 'react';
-import Text from './Typography/Text';
+import Text, { useTextStyles } from './Typography/Text';
 import { Box } from './system';
 import Code from './Code/Code';
 import InlineCode from './InlineCode/InlineCode';
@@ -116,8 +116,22 @@ export default {
     <Box
       component="ul"
       paddingBottom="large"
+      className={useTextStyles({ baseline: false })}
       style={{
         listStyle: 'disc',
+        padding: '0 1em',
+      }}
+    >
+      {props.children}
+    </Box>
+  ),
+  ol: (props: Children) => (
+    <Box
+      component="ol"
+      paddingBottom="large"
+      className={useTextStyles({ baseline: false })}
+      style={{
+        listStyle: 'decimal',
         padding: '0 1em',
       }}
     >

@@ -11,11 +11,33 @@ export interface TextProps {
   baseline?: boolean;
   children: ReactNode;
 }
-export default ({
-  component = 'p',
+
+export const useTextStyles = ({
   size = 'standard',
   color = 'neutral',
   weight = 'regular',
+  baseline,
+}: {
+  size?: keyof typeof styles.text;
+  color?: keyof typeof styles.color;
+  weight?: keyof typeof styles.weight;
+  baseline: boolean;
+}) =>
+  classnames(
+    styles.font.body,
+    styles.text[size].base,
+    styles.color[color],
+    styles.weight[weight],
+    {
+      [styles.text.standard.trims]: baseline,
+    },
+  );
+
+export default ({
+  component = 'p',
+  size,
+  color,
+  weight,
   baseline = true,
   children,
 }: TextProps) => {
@@ -23,15 +45,7 @@ export default ({
     <Box
       component={component}
       display="block"
-      className={classnames(
-        styles.font.body,
-        styles.text[size].base,
-        styles.color[color],
-        styles.weight[weight],
-        {
-          [styles.text.standard.trims]: baseline,
-        },
-      )}
+      className={useTextStyles({ size, color, weight, baseline })}
     >
       {children}
     </Box>
