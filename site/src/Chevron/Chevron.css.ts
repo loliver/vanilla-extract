@@ -2,6 +2,9 @@ import { style } from '@vanilla-extract/css';
 
 export const root = style({
   transition: 'all .15s ease',
+  fill: 'currentcolor',
+  position: 'relative',
+  top: '1px',
 });
 
 export const direction = {

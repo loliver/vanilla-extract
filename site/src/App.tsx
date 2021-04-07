@@ -17,6 +17,7 @@ import { Stack, ContentBlock } from './system';
 import { Title, Meta } from 'react-head';
 import Logo from './Logo/Logo';
 import Code from './Code/Code';
+import { Chevron } from './Chevron/Chevron';
 
 const DocumentationPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -86,30 +87,21 @@ const Header = ({
 const HomePage = () => {
   return (
     <>
-      <Header
-        rightNav={
-          <Box display="flex" alignItems="center">
-            <Box paddingRight="xlarge">
-              <Link to="/documentation" size="small">
-                Documentation
-              </Link>
-            </Box>
-            <Link to="https://github.com/seek-oss/vanilla-extract" size="small">
-              Github
-            </Link>
-          </Box>
-        }
-      />
-
       <Box
         paddingY="xxxlarge"
-        paddingX={{ mobile: 'medium', desktop: 'xxlarge' }}
+        paddingX={{ mobile: 'none', desktop: 'xxlarge' }}
         background="green"
       >
-        <ContentBlock size="large">
-          <Box display="flex" alignItems="center" paddingBottom="xxlarge">
+        <ContentBlock size="large" guttersOnMobile>
+          <Box
+            display="flex"
+            flexDirection={{ mobile: 'column', desktop: 'row' }}
+            alignItems={{ mobile: 'center', desktop: 'center' }}
+            paddingY={{ mobile: 'medium', desktop: 'xxxlarge' }}
+          >
             <Box style={{ flexGrow: 0, maxWidth: 600 }}>
               <Stack space="xxlarge">
+                <Logo size={100} />
                 <Heading level="1">
                   The zero-runtime
                   <br />
@@ -122,11 +114,22 @@ const HomePage = () => {
                   scoped class names and CSS Variables, then generate static CSS
                   files at build time.
                 </Text>
+                <Box display="flex" alignItems="center">
+                  <Box paddingRight="xlarge">
+                    <Link variant="button" to="/documentation">
+                      Documentation <Chevron direction="right" />
+                    </Link>
+                  </Box>
+                  <Link to="https://github.com/seek-oss/vanilla-extract">
+                    GitHub <Chevron direction="right" />
+                  </Link>
+                </Box>
               </Stack>
             </Box>
             <Box
               borderRadius="large"
-              marginLeft="xxlarge"
+              marginLeft={{ mobile: 'none', desktop: 'xxlarge' }}
+              marginTop={{ mobile: 'xxlarge', desktop: 'none' }}
               style={{
                 flexGrow: 1,
                 overflow: 'hidden',

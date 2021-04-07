@@ -9,19 +9,24 @@ interface LinkProps extends NavLinkProps {
   baseline?: boolean;
   size?: 'standard' | 'small';
   underline?: 'always' | 'hover';
+  variant?: 'link' | 'button';
 }
 export default ({
   to,
   baseline = false,
   size = 'standard',
   underline = 'hover',
+  variant = 'link',
   className,
   ...restProps
 }: LinkProps) => {
-  const classNames = classnames(
-    underline === 'hover' ? styles.underlineOnHover : undefined,
-    useTextStyles({ size, color: 'link', baseline }),
-  );
+  const classNames =
+    variant === 'link'
+      ? classnames(
+          underline === 'hover' ? styles.underlineOnHover : undefined,
+          useTextStyles({ size, color: 'link', baseline }),
+        )
+      : styles.button;
 
   if (typeof to === 'string' && /^http/.test(to)) {
     return <a href={to} {...restProps} className={classNames} />;

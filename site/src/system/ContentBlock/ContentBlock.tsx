@@ -5,7 +5,7 @@ import * as styles from './ContentBlock.css';
 
 export const ContentBlock = ({
   children,
-  guttersOnMobile = true,
+  guttersOnMobile = false,
   size = 'standard',
 }: {
   children: ReactNode;
@@ -16,7 +16,7 @@ export const ContentBlock = ({
     <Box
       className={classnames(styles.root, styles.width[size])}
       paddingX={
-        guttersOnMobile ? { mobile: 'medium', desktop: 'none' } : undefined
+        guttersOnMobile ? { mobile: 'large', desktop: 'none' } : undefined
       }
     >
       {children}
