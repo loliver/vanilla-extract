@@ -30,6 +30,7 @@ const fontMetrics = {
 };
 
 const palette = {
+  // https://hihayk.github.io/scale/#3/3/50/80/0/0/100/29/8991a5/137/145/165/white
   grey: {
     700: '#434855',
     600: '#5A6070',
@@ -39,6 +40,8 @@ const palette = {
     200: '#C4CAD9',
     100: '#E5E8F0',
   },
+  // https://hihayk.github.io/scale/#3/3/44/80/0/0/100/29/76C0FF/118/190/255/white
+  // Customised 600 for a11y
   blue: {
     700: '#376C8F',
     600: '#437CA4',
@@ -48,6 +51,7 @@ const palette = {
     200: '#AAE3FF',
     100: '#D6F4FF',
   },
+  // https://hihayk.github.io/scale/#3/3/44/80/0/0/20/44/F090F5/240/144/245/white
   pink: {
     700: '#8F448F',
     600: '#B35BB4',
@@ -57,6 +61,7 @@ const palette = {
     200: '#FBC8FE',
     100: '#FEE7FF',
   },
+  // https://hihayk.github.io/scale/#3/3/44/80/0/0/20/-20/26E08A/38/224/138/white
   green: {
     700: '#20734D',
     600: '#249661',
