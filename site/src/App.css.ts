@@ -85,7 +85,7 @@ export const backdrop = style({
   bottom: 0,
   left: 0,
   right: 0,
-  background: themeVars.background.overlay,
+  background: themeVars.background.green,
   zIndex: 1,
   transition: 'opacity 0.1s ease',
   backdropFilter: 'blur(4px)',

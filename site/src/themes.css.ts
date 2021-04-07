@@ -236,22 +236,21 @@ export const [themeClass, themeVars] = createTheme({
   background: {
     body: '#fff',
     menu: '#fff',
-    overlay: palette.green[100],
     code: '#1c1724',
-    note: '#e3f8ff',
     blue: palette.blue[100],
-    pink: palette.pink[400],
+    pink: palette.pink[100],
     green: palette.green[100],
   },
   palette,
   border: {
     width: {
-      standard: '4px',
-      large: '8px',
+      standard: px(1 * grid),
+      large: px(2 * grid),
     },
     radius: {
-      small: '8px',
-      large: '28px',
+      small: px(2 * grid),
+      medium: px(4 * grid),
+      large: px(7 * grid),
       full: '9999px',
     },
   },

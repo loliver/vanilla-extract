@@ -6,5 +6,5 @@ export const root = style({
   height: `${calc(themeVars.grid).multiply(2)}`,
   width: 120,
   borderRadius: themeVars.border.radius.full,
-  background: themeVars.background.pink,
+  background: themeVars.palette.pink[400],
 });
