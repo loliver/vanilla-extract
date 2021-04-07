@@ -11,6 +11,7 @@ export const Chevron = ({ direction = 'down' }: ChevronProps) => (
     width="16"
     height="16"
     viewBox="0 0 1024 1024"
+    fill="currentColor"
     className={classnames(styles.root, styles.direction[direction])}
   >
     <path d="M945 266l78 67-510 524-510-524 75-69 435 451 432-449z" />

@@ -18,6 +18,7 @@ import { Title, Meta } from 'react-head';
 import Logo from './Logo/Logo';
 import Code from './Code/Code';
 import { Chevron } from './Chevron/Chevron';
+import { NewWindow } from './NewWindow/NewWindow';
 
 const DocumentationPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -121,7 +122,7 @@ const HomePage = () => {
                     </Link>
                   </Box>
                   <Link to="https://github.com/seek-oss/vanilla-extract">
-                    GitHub <Chevron direction="right" />
+                    GitHub <NewWindow />
                   </Link>
                 </Box>
               </Stack>
