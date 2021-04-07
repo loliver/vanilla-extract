@@ -3,20 +3,23 @@ import { Link, NavLinkProps } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import classnames from 'classnames';
 import { useTextStyles } from './Text';
+import * as styles from './Link.css';
 
 interface LinkProps extends NavLinkProps {
   baseline?: boolean;
   size?: 'standard' | 'small';
+  underline?: 'always' | 'hover';
 }
 export default ({
   to,
   baseline = false,
   size = 'standard',
+  underline = 'hover',
   className,
   ...restProps
 }: LinkProps) => {
   const classNames = classnames(
-    className,
+    underline === 'hover' ? styles.underlineOnHover : undefined,
     useTextStyles({ size, color: 'link', baseline }),
   );
 

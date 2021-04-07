@@ -30,14 +30,6 @@ globalStyle(tokenSelector('string'), {
   color: themeVars.palette.green[200],
 });
 
-globalStyle(tokenSelector('variable'), {
-  color: 'red',
-});
-
-globalStyle(tokenSelector('property'), {
-  color: 'blue',
-});
-
 globalStyle(tokenSelector('function', 'property'), {
   color: themeVars.palette.pink[300],
 });
@@ -45,3 +37,39 @@ globalStyle(tokenSelector('function', 'property'), {
 globalStyle(tokenSelector('punctuation', 'operator'), {
   color: themeVars.palette.grey[400],
 });
+
+export const theme = {
+  'code[class*="language-"]': {
+    whiteSpace: 'pre',
+    color: themeVars.color.code,
+    lineHeight: '24px',
+  },
+  'pre[class*="language-"]': {
+    whiteSpace: 'pre',
+    margin: 0,
+  },
+  comment: {
+    color: themeVars.palette.grey[500],
+  },
+  keyword: {
+    color: themeVars.palette.blue[200],
+  },
+  selector: {
+    color: themeVars.palette.blue[200],
+  },
+  string: {
+    color: themeVars.palette.green[200],
+  },
+  function: {
+    color: themeVars.palette.pink[300],
+  },
+  property: {
+    color: themeVars.palette.pink[300],
+  },
+  punctuation: {
+    color: themeVars.palette.grey[400],
+  },
+  operator: {
+    color: themeVars.palette.grey[400],
+  },
+};

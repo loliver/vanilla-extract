@@ -50,7 +50,7 @@ const palette = {
   },
   pink: {
     700: '#8F448F',
-    600: '#',
+    600: '#B35BB4',
     500: '#D375D7',
     400: '#F090F5',
     300: '#F6ABFA',
@@ -223,7 +223,7 @@ export const [themeClass, themeVars] = createTheme({
     strong: '#26232c',
     neutral: palette.grey[700],
     code: palette.grey[100],
-    link: palette.blue[600],
+    link: palette.grey[700],
   },
   background: {
     body: '#fff',

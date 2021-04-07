@@ -3,7 +3,7 @@ import { themeVars } from './themes.css';
 
 globalStyle('html, body', { margin: 0, padding: 0 });
 
-const headerHeight = '150px';
+const headerHeight = '120px';
 const contentWidth = '1200px';
 const sidebarWidth = '300px';
 

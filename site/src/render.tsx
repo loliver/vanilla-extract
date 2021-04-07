@@ -56,9 +56,9 @@ export default ({ route, publicPath, entrypoints }: RenderParams) => {
   const headTags: HeadTags = [];
   const html = render(route, headTags, basePath);
 
-  const favicon = (size: number) =>
+  const favicon = (size?: number) =>
     `<link rel="icon" type="image/png" sizes="${size}x${size}" href="${fullyQualifiedUrl(
-      assetPath(`favicon-${size}x${size}.png`),
+      assetPath(`favicon${size ? `-${size}x${size}` : ''}.png`),
     )}" />`;
 
   const shareImageUrl = fullyQualifiedUrl(assetPath('og-image.png'));
@@ -71,7 +71,7 @@ export default ({ route, publicPath, entrypoints }: RenderParams) => {
       <meta name="viewport" content="width=device-width, initial-scale=1">
       ${favicon(16)}
       ${favicon(32)}
-      ${favicon(96)}
+      ${favicon()}
       <meta property="og:image" content="${shareImageUrl}" />
       <meta property="og:image:width" content="1200">
       <meta property="og:image:height" content="600">

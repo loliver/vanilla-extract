@@ -46,7 +46,11 @@ const A = ({
   size, // Omit
   ...restProps
 }: AllHTMLAttributes<HTMLAnchorElement>) =>
-  href ? <Link to={href} {...restProps} /> : <a {...restProps} />;
+  href ? (
+    <Link to={href} {...restProps} underline="always" />
+  ) : (
+    <a {...restProps} />
+  );
 
 const Heading = ({ level, component, children, id }: HeadingProps) => {
   const headingElement = createElement(
@@ -106,7 +110,11 @@ export default {
   }: {
     'data-language': string;
     dangerouslySetInnerHTML: { __html: string };
-  }) => <Code language={language}>{dangerouslySetInnerHTML}</Code>,
+  }) => (
+    <Box marginBottom={{ mobile: 'small', desktop: 'xlarge' }}>
+      <Code language={language}>{dangerouslySetInnerHTML}</Code>
+    </Box>
+  ),
   inlineCode: InlineCode,
   th: Th,
   td: Td,

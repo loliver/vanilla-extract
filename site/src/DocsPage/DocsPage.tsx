@@ -49,8 +49,6 @@ export default () => (
       const prevDoc = docs[index - 1];
       const nextDoc = docs[index + 1];
       const pageTitle = `vanilla-extract${index ? ` – ${title} ` : ''}`.trim();
-      const description =
-        index > 0 ? null : 'Zero-runtime Stylesheets-in-TypeScript.';
       const hashes = sections.map(({ hash }) => hash);
 
       return (
@@ -63,13 +61,6 @@ export default () => (
               <Title>{pageTitle}</Title>
               <Meta property="og:title" content={pageTitle} />
               <Meta name="twitter:title" content={pageTitle} />
-              {description ? (
-                <Fragment>
-                  <Meta name="description" content={description} />
-                  <Meta property="og:description" content={description} />
-                  <Meta name="twitter:description" content={description} />
-                </Fragment>
-              ) : null}
               <DocsRoute
                 nextDoc={nextDoc}
                 prevDoc={prevDoc}

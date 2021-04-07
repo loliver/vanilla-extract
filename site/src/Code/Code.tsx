@@ -18,18 +18,12 @@ export default ({ language, children }: CodeProps) => {
   const padding = { mobile: 'large', desktop: 'xlarge' } as const;
 
   return (
-    <Box
-      className={styles.root}
-      padding={padding}
-      marginBottom={{ mobile: 'small', desktop: 'xlarge' }}
-    >
+    <Box className={styles.root} padding={padding}>
       <Text size="code" component="div" color="code" baseline={false}>
         {typeof children === 'string' ? (
-          <InlineCode>
-            <span className={`language-${language}`} data-language={language}>
-              {children}
-            </span>
-          </InlineCode>
+          <SyntaxHighlighter language={language} style={styles.theme}>
+            {children}
+          </SyntaxHighlighter>
         ) : (
           <InlineCode>
             <span

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import classnames from 'classnames';
+import dedent from 'dedent';
 import { Link as ReactRouterLink, Route } from 'react-router-dom';
 import { MDXProvider } from '@mdx-js/react';
 import mdxComponents from './mdx-components';
@@ -15,6 +16,7 @@ import Text from './Typography/Text';
 import { Stack, ContentBlock } from './system';
 import { Title, Meta } from 'react-head';
 import Logo from './Logo/Logo';
+import Code from './Code/Code';
 
 const DocumentationPage = () => {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -53,19 +55,18 @@ const DocumentationPage = () => {
         onClick={toggleMenu}
       />
 
+      <Box
+        component="aside"
+        paddingTop={{ mobile: 'xlarge', desktop: 'none' }}
+        paddingX={{ mobile: 'xlarge', desktop: 'large' }}
+        className={classnames(
+          styles.sidebar,
+          menuOpen ? styles.sidebarOpen : '',
+        )}
+      >
+        <Navigation onSelect={closeMenu} />
+      </Box>
       <Box className={styles.container}>
-        <Box
-          component="aside"
-          paddingTop={{ mobile: 'xlarge', desktop: 'none' }}
-          paddingX={{ mobile: 'xlarge', desktop: 'large' }}
-          className={classnames(
-            styles.sidebar,
-            menuOpen ? styles.sidebarOpen : '',
-          )}
-        >
-          <Navigation onSelect={closeMenu} />
-        </Box>
-
         <Box component="main" paddingX="large" className={styles.main}>
           <DocsPage />
         </Box>
@@ -82,8 +83,7 @@ const HomePage = () => {
         display="flex"
         alignItems="center"
         justifyContent="spaceBetween"
-        paddingY="large"
-        paddingX="large"
+        padding="large"
         style={{
           position: 'relative',
           boxShadow: '0 -10px 20px 0 #20734D',
@@ -108,23 +108,24 @@ const HomePage = () => {
           </Link>
         </Box>
       </Box>
+
       <Box
-        display="flex"
-        alignItems="center"
+        paddingY="xxxlarge"
+        paddingX={{ mobile: 'medium', desktop: 'xxlarge' }}
         style={{
-          height: '30vh',
-          minHeight: '400px',
           background: '#D0FDE8',
         }}
-        paddingBottom="xlarge"
       >
-        <ContentBlock guttersOnMobile>
-          <Box
-            style={{
-              maxWidth: 700,
-              minWidth: '250px',
-            }}
-          >
+        <Box
+          display="flex"
+          alignItems="center"
+          paddingBottom="xxlarge"
+          style={{
+            maxWidth: 1350,
+            margin: '0 auto',
+          }}
+        >
+          <Box style={{ flexGrow: 0, maxWidth: 600 }}>
             <Stack space="xxlarge">
               <Heading level="1">
                 The zero-runtime
@@ -140,7 +141,37 @@ const HomePage = () => {
               </Text>
             </Stack>
           </Box>
-        </ContentBlock>
+          <Box
+            style={{
+              flexGrow: 1,
+              borderRadius: '28px',
+              overflow: 'hidden',
+            }}
+            marginLeft="xxlarge"
+          >
+            <Code language="tsx">
+              {dedent`import { createGlobalTheme, style } from '@vanilla-extract/css';
+
+            // Set up the theme via CSS Variables
+            export const themeVars = createGlobalTheme(':root', {
+              color: {
+                brand: 'blue'
+              },
+              font: {
+                body: 'comic sans ms'
+              }
+            });
+
+            // Consume the theme
+            export const exampleStyle = style({
+              backgroundColor: themeVars.color.brand,
+              fontFamily: themeVars.font.body,
+              color: 'white',
+              padding: '10px'
+            })`}
+            </Code>
+          </Box>
+        </Box>
       </Box>
 
       <ContentBlock guttersOnMobile>

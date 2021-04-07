@@ -48,7 +48,7 @@ const NavSection = ({
 }) => (
   <Fragment>
     <Box paddingBottom="medium">
-      <NavLink size="xsmall" to={href} exact onClick={onClick}>
+      <NavLink size="small" to={href} exact onClick={onClick}>
         {title}
       </NavLink>
     </Box>
@@ -70,29 +70,33 @@ const SubLink = ({
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }) => {
   return (
-    <Box
-      className={styles.subLinkContainer}
-      paddingLeft="large"
-      paddingBottom="xsmall"
-      key={hash}
+    <Link
+      size="small"
+      to={`${to}${hash ? `#${hash}` : ''}`}
+      onClick={onClick}
+      style={
+        active
+          ? {
+              fontWeight: 'bold',
+            }
+          : undefined
+      }
     >
-      {active ? <div className={styles.activeSubLinkBar} /> : null}
-      <Link
-        size="small"
-        to={`${to}${hash ? `#${hash}` : ''}`}
-        onClick={onClick}
-        className={styles.underlineOnHover}
-        style={
-          active
-            ? {
-                fontWeight: 'bold',
-              }
-            : undefined
-        }
+      <Box
+        className={styles.subLinkContainer}
+        paddingLeft="large"
+        paddingY="xsmall"
+        key={hash}
       >
+        <div
+          className={classnames(
+            styles.activeIndicator,
+            active ? styles.active : '',
+          )}
+        />
         {children}
-      </Link>
-    </Box>
+      </Box>
+    </Link>
   );
 };
 
