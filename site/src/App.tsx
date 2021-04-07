@@ -100,7 +100,7 @@ const HomePage = () => {
             alignItems={{ mobile: 'center', desktop: 'center' }}
             paddingY={{ mobile: 'medium', desktop: 'xxxlarge' }}
           >
-            <Box style={{ flexGrow: 0, maxWidth: 600 }}>
+            <Box flexGrow={0} style={{ maxWidth: 600 }}>
               <Stack space="xxlarge">
                 <Logo size={100} />
                 <Heading level="1">
@@ -131,10 +131,8 @@ const HomePage = () => {
               borderRadius="large"
               marginLeft={{ mobile: 'none', desktop: 'xxlarge' }}
               marginTop={{ mobile: 'xxlarge', desktop: 'none' }}
-              style={{
-                flexGrow: 1,
-                overflow: 'hidden',
-              }}
+              flexGrow={1}
+              style={{ overflow: 'hidden' }}
             >
               <Code language="tsx">
                 {dedent`import { createGlobalTheme, style } from '@vanilla-extract/css';
