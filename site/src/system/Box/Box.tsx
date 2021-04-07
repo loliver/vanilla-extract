@@ -33,6 +33,8 @@ export interface BoxProps extends AllHTMLAttributes<HTMLElement> {
   flexWrap?: keyof typeof atomStyles.flexWrap;
   flexGrow?: keyof typeof atomStyles.flexGrow;
   flexShrink?: keyof typeof atomStyles.flexShrink;
+  borderRadius?: keyof typeof atomStyles.borderRadius;
+  background?: keyof typeof atomStyles.background;
 }
 
 export const resolveResponsiveProp = <Keys extends string | number>(
@@ -75,6 +77,8 @@ export const Box = ({
   flexWrap,
   flexGrow,
   flexShrink,
+  borderRadius,
+  background,
   ...restProps
 }: BoxProps) => {
   const resolvedPaddingTop = paddingTop || paddingY || padding;
@@ -166,6 +170,8 @@ export const Box = ({
     atomStyles.flexWrap[flexWrap!],
     atomStyles.flexGrow[flexGrow!],
     atomStyles.flexShrink[flexShrink!],
+    atomStyles.borderRadius[borderRadius!],
+    atomStyles.background[background!],
   );
 
   return createElement(component, { className: atomClasses, ...restProps });

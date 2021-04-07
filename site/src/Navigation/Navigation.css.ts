@@ -25,9 +25,8 @@ export const activeIndicator = style({
   left: `${calc(themeVars.spacing.large).negate()}`,
   right: 0,
   bottom: 0,
-  backgroundColor: themeVars.palette.green[100],
-  borderTopRightRadius: themeVars.border.radius.full,
-  borderBottomRightRadius: themeVars.border.radius.full,
+  borderTopLeftRadius: 0,
+  borderBottomLeftRadius: 0,
   transition: 'transform .3s ease, opacity .3s ease',
   selectors: {
     [`&:not(${active})`]: {

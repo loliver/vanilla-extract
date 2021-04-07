@@ -119,7 +119,10 @@ export const [themeClass, themeVars] = createTheme({
     xxlarge: px(12 * grid),
     xxxlarge: px(20 * grid),
   },
-  contentWidth: px(860),
+  contentWidth: {
+    standard: px(860),
+    large: px(1350),
+  },
   heading: {
     h1: calculateTypographyStyles(
       {
@@ -228,12 +231,12 @@ export const [themeClass, themeVars] = createTheme({
   background: {
     body: '#fff',
     menu: '#fff',
-    overlay: palette.green[400],
+    overlay: palette.green[100],
     code: '#1c1724',
     note: '#e3f8ff',
     blue: palette.blue[400],
     pink: palette.pink[400],
-    green: palette.green[400],
+    green: palette.green[100],
   },
   palette,
   border: {
@@ -243,6 +246,7 @@ export const [themeClass, themeVars] = createTheme({
     },
     radius: {
       small: '8px',
+      large: '28px',
       full: '9999px',
     },
   },

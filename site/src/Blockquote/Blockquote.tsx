@@ -6,10 +6,10 @@ export default (props: { children: ReactNode }) => {
   return (
     <Box
       component="blockquote"
-      paddingLeft="xlarge"
-      paddingRight="xlarge"
+      paddingX="xlarge"
       paddingTop="xlarge"
       marginBottom="xlarge"
+      borderRadius="small"
       className={styles.root}
     >
       {props.children}

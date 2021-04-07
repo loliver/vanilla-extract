@@ -88,7 +88,9 @@ const SubLink = ({
         paddingY="xsmall"
         key={hash}
       >
-        <div
+        <Box
+          borderRadius="full"
+          background="green"
           className={classnames(
             styles.activeIndicator,
             active ? styles.active : '',

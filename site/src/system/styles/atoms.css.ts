@@ -106,3 +106,13 @@ const flexGrowRules = {
   1: 1,
 } as const;
 export const flexGrow = mapToStyles(flexGrowRules, mapToProperty('flexGrow'));
+
+export const borderRadius = mapToStyles(
+  themeVars.border.radius,
+  mapToProperty('borderRadius'),
+);
+
+export const background = mapToStyles(
+  themeVars.background,
+  mapToProperty('background'),
+);

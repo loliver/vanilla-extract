@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { ReactNode, useState } from 'react';
 import classnames from 'classnames';
 import dedent from 'dedent';
 import { Link as ReactRouterLink, Route } from 'react-router-dom';
@@ -25,27 +25,7 @@ const DocumentationPage = () => {
 
   return (
     <MDXProvider components={mdxComponents}>
-      <Box
-        component="header"
-        display="flex"
-        alignItems="flexStart"
-        justifyContent="spaceBetween"
-        paddingTop="large"
-        paddingX="large"
-        className={styles.header}
-      >
-        <ReactRouterLink to="/" style={{ textDecoration: 'none' }}>
-          <Box display="flex" alignItems="center">
-            <Box marginRight="medium">
-              <Logo size={40} />
-            </Box>
-            <Heading level="3">vanilla-extract</Heading>
-          </Box>
-        </ReactRouterLink>
-        <Box paddingTop="small">
-          <Fab open={menuOpen} onClick={toggleMenu} />
-        </Box>
-      </Box>
+      <Header fixed rightNav={<Fab open={menuOpen} onClick={toggleMenu} />} />
 
       <Box
         className={classnames(
@@ -75,112 +55,116 @@ const DocumentationPage = () => {
   );
 };
 
+const Header = ({
+  rightNav,
+  elevate = false,
+  fixed = false,
+}: {
+  rightNav?: ReactNode;
+  elevate?: boolean;
+  fixed?: boolean;
+}) => {
+  return (
+    <Box
+      component="header"
+      display="flex"
+      justifyContent="spaceBetween"
+      padding="large"
+      className={classnames(
+        elevate ? styles.elevate : '',
+        fixed ? styles.fixed : '',
+      )}
+    >
+      <ReactRouterLink to="/" style={{ textDecoration: 'none' }}>
+        <Logo size={40} />
+      </ReactRouterLink>
+      {rightNav}
+    </Box>
+  );
+};
+
 const HomePage = () => {
   return (
     <>
-      <Box
-        component="header"
-        display="flex"
-        alignItems="center"
-        justifyContent="spaceBetween"
-        padding="large"
-        style={{
-          position: 'relative',
-          boxShadow: '0 -10px 20px 0 #20734D',
-        }}
-      >
-        <ReactRouterLink to="/" style={{ textDecoration: 'none' }}>
+      <Header
+        rightNav={
           <Box display="flex" alignItems="center">
-            <Box marginRight="medium">
-              <Logo size={40} />
+            <Box paddingRight="xlarge">
+              <Link to="/documentation" size="small">
+                Documentation
+              </Link>
             </Box>
-            <Heading level="3">vanilla-extract</Heading>
-          </Box>
-        </ReactRouterLink>
-        <Box display="flex">
-          <Box paddingRight="xlarge">
-            <Link to="/documentation" size="small">
-              Documentation
+            <Link to="https://github.com/seek-oss/vanilla-extract" size="small">
+              Github
             </Link>
           </Box>
-          <Link to="https://github.com/seek-oss/vanilla-extract" size="small">
-            Github
-          </Link>
-        </Box>
-      </Box>
+        }
+      />
 
       <Box
         paddingY="xxxlarge"
         paddingX={{ mobile: 'medium', desktop: 'xxlarge' }}
-        style={{
-          background: '#D0FDE8',
-        }}
+        background="green"
       >
-        <Box
-          display="flex"
-          alignItems="center"
-          paddingBottom="xxlarge"
-          style={{
-            maxWidth: 1350,
-            margin: '0 auto',
-          }}
-        >
-          <Box style={{ flexGrow: 0, maxWidth: 600 }}>
-            <Stack space="xxlarge">
-              <Heading level="1">
-                The zero-runtime
-                <br />
-                CSS-in-TypeScript
-                <br />
-                preprocessor.
-              </Heading>
-              <Text>
-                Write your styles in TypeScript (or JavaScript) with locally
-                scoped class names and CSS Variables, then generate static CSS
-                files at build time.
-              </Text>
-            </Stack>
-          </Box>
-          <Box
-            style={{
-              flexGrow: 1,
-              borderRadius: '28px',
-              overflow: 'hidden',
-            }}
-            marginLeft="xxlarge"
-          >
-            <Code language="tsx">
-              {dedent`import { createGlobalTheme, style } from '@vanilla-extract/css';
+        <ContentBlock size="large">
+          <Box display="flex" alignItems="center" paddingBottom="xxlarge">
+            <Box style={{ flexGrow: 0, maxWidth: 600 }}>
+              <Stack space="xxlarge">
+                <Heading level="1">
+                  The zero-runtime
+                  <br />
+                  CSS-in-TypeScript
+                  <br />
+                  preprocessor.
+                </Heading>
+                <Text>
+                  Write your styles in TypeScript (or JavaScript) with locally
+                  scoped class names and CSS Variables, then generate static CSS
+                  files at build time.
+                </Text>
+              </Stack>
+            </Box>
+            <Box
+              borderRadius="large"
+              marginLeft="xxlarge"
+              style={{
+                flexGrow: 1,
+                overflow: 'hidden',
+              }}
+            >
+              <Code language="tsx">
+                {dedent`import { createGlobalTheme, style } from '@vanilla-extract/css';
 
-            // Set up the theme via CSS Variables
-            export const themeVars = createGlobalTheme(':root', {
-              color: {
-                brand: 'blue'
-              },
-              font: {
-                body: 'comic sans ms'
-              }
-            });
+                // Set up the theme via CSS Variables
+                export const themeVars = createGlobalTheme(':root', {
+                  color: {
+                    brand: 'blue'
+                  },
+                  font: {
+                    body: 'comic sans ms'
+                  }
+                });
 
-            // Consume the theme
-            export const exampleStyle = style({
-              backgroundColor: themeVars.color.brand,
-              fontFamily: themeVars.font.body,
-              color: 'white',
-              padding: '10px'
-            })`}
-            </Code>
+                // Consume the theme
+                export const exampleStyle = style({
+                  backgroundColor: themeVars.color.brand,
+                  fontFamily: themeVars.font.body,
+                  color: 'white',
+                  padding: '10px'
+                });`}
+              </Code>
+            </Box>
           </Box>
-        </Box>
+        </ContentBlock>
       </Box>
 
       <ContentBlock guttersOnMobile>
         <Box
           padding={{ mobile: 'xlarge', desktop: 'xxlarge' }}
+          borderRadius="large"
+          background="body"
           style={{
             transform: 'translateY(-50%)',
-            background: 'white',
-            borderRadius: '28px',
             boxShadow: '0 0 50px -10px #24966180',
             fontFamily: '"Roboto Mono", Menlo, monospace',
           }}

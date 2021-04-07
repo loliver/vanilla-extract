@@ -7,15 +7,18 @@ const headerHeight = '120px';
 const contentWidth = '1200px';
 const sidebarWidth = '300px';
 
-export const header = style({
+export const fixed = style({
   height: headerHeight,
-
   '@media': {
     'screen and (min-width: 1024px)': {
       position: 'fixed',
-      width: '100%',
     },
   },
+});
+
+export const elevate = style({
+  position: 'relative',
+  boxShadow: `0 -10px 20px 0 ${themeVars.palette.green[700]}`,
 });
 
 export const container = style({

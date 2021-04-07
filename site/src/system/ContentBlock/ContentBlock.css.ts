@@ -1,7 +1,12 @@
-import { style } from '@vanilla-extract/css';
+import { mapToProperty } from './../../themeUtils';
+import { style, mapToStyles } from '@vanilla-extract/css';
 import { themeVars } from '../../themes.css';
 
 export const root = style({
-  maxWidth: themeVars.contentWidth,
   margin: '0 auto',
 });
+
+export const width = mapToStyles(
+  themeVars.contentWidth,
+  mapToProperty('maxWidth'),
+);
