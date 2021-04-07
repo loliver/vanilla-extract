@@ -1,10 +1,10 @@
-import React, { Fragment, MouseEvent, ReactNode } from 'react';
+import React, { MouseEvent, ReactNode } from 'react';
 import {
   NavLink as ReactRouterNavLink,
   NavLinkProps as ReactRouterNavLinkProps,
 } from 'react-router-dom';
 import classnames from 'classnames';
-import { Box } from '../system';
+import { Box, Stack } from '../system';
 import docs from '../docs-store';
 import Link from '../Typography/Link';
 import { useTextStyles } from '../Typography/Text';
@@ -16,7 +16,7 @@ interface NavLinkProps extends ReactRouterNavLinkProps {
   size?: 'standard' | 'small' | 'xsmall';
 }
 const NavLink = ({
-  baseline = true,
+  baseline = false,
   size = 'standard',
   children,
   ...restProps
@@ -30,7 +30,9 @@ const NavLink = ({
         useTextStyles({ size, weight: 'strong', baseline }),
       )}
     >
-      {children}
+      <Box component="span" display="block" paddingY="xsmall">
+        {children}
+      </Box>
     </ReactRouterNavLink>
   );
 };
@@ -46,14 +48,12 @@ const NavSection = ({
   children: ReactNode;
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }) => (
-  <Fragment>
-    <Box paddingBottom="medium">
-      <NavLink size="small" to={href} exact onClick={onClick}>
-        {title}
-      </NavLink>
-    </Box>
-    <Box paddingBottom="xlarge">{children}</Box>
-  </Fragment>
+  <>
+    <NavLink size="small" to={href} exact onClick={onClick}>
+      {title}
+    </NavLink>
+    {children}
+  </>
 );
 
 const SubLink = ({
@@ -111,7 +111,7 @@ export default ({ onSelect }: { onSelect: () => void }) => {
   };
 
   return (
-    <>
+    <Stack space="xlarge">
       {docs.map(({ title, route, sections }) => (
         <NavSection
           key={route}
@@ -142,6 +142,6 @@ export default ({ onSelect }: { onSelect: () => void }) => {
           GitHub
         </SubLink>
       </NavSection>
-    </>
+    </Stack>
   );
 };

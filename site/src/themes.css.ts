@@ -234,7 +234,7 @@ export const [themeClass, themeVars] = createTheme({
     overlay: palette.green[100],
     code: '#1c1724',
     note: '#e3f8ff',
-    blue: palette.blue[400],
+    blue: palette.blue[100],
     pink: palette.pink[400],
     green: palette.green[100],
   },
