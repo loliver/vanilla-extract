@@ -5,7 +5,10 @@ export const root = style({
   borderLeft: `${themeVars.border.width.large} solid ${themeVars.palette.blue[400]}`,
 });
 
+globalStyle(`${root} code`, {
+  background: themeVars.palette.blue[200],
+});
+
 globalStyle(`${root} *`, {
   color: themeVars.palette.blue[600],
-  background: themeVars.background.blue,
 });
