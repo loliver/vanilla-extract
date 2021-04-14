@@ -30,6 +30,8 @@ Basically, it’s [“CSS Modules](https://github.com/css-modules/css-modules)-i
 
 🏃‍♂️ &nbsp; Optional runtime version for development and testing.
 
+🙈 &nbsp; Optional API for dynamic runtime theming.
+
 ---
 
 **Write your styles in `.css.ts` files.**
@@ -84,7 +86,6 @@ document.write(`
   - [mapToStyles](#maptostyles)
   - [createTheme](#createtheme)
   - [createGlobalTheme](#createglobaltheme)
-  - [createInlineTheme](#createinlinetheme)
   - [createThemeVars](#createthemevars)
   - [assignVars](#assignvars)
   - [createVar](#createvar)
@@ -93,6 +94,10 @@ document.write(`
   - [globalFontFace](#globalfontface)
   - [keyframes](#keyframes)
   - [globalKeyframes](#globalkeyframes)
+- [Dynamic API](#dynamic-api)
+  - [createInlineTheme](#createinlinetheme)
+  - [setElementTheme](#setelementtheme)
+  - [setElementVar](#setelementvar)
 - [Utility functions](#utility-functions)
   - [calc](#calc)
 - [Thanks](#thanks)
@@ -162,11 +167,6 @@ module.exports = {
 
 ### esbuild
 
-Current limitations:
-
-- No automatic readable class names during development. However, you can still manually provide a debug ID as the last argument to functions that generate scoped styles, e.g. `export const className = style({ ... }, 'className');`
-- The `projectRoot` plugin option must be set to get deterministic class name hashes between build systems
-
 1. Install the dependencies.
 
 ```bash
@@ -181,10 +181,12 @@ const { vanillaExtractPlugin } = require('@vanilla-extract/esbuild-plugin');
 require('esbuild').build({
   entryPoints: ['app.ts'],
   bundle: true,
-  plugins: [vanillaExtractPlugin({ projectRoot: '...' })],
+  plugins: [vanillaExtractPlugin()],
   outfile: 'out.js',
 }).catch(() => process.exit(1))
 ```
+
+> Please note: There are currently no automatic readable class names during development. However, you can still manually provide a debug ID as the last argument to functions that generate scoped styles, e.g. `export const className = style({ ... }, 'className');`
 
 ### Gatsby
 
@@ -379,27 +381,6 @@ export const themeVars = createGlobalTheme(':root', {
 
 > 💡 All theme variants must provide a value for every variable or it’s a type error.
 
-### createInlineTheme
-
-Generates a custom theme at runtime as an inline style object.
-
-```ts
-import { createInlineTheme } from '@vanilla-extract/css/createInlineTheme';
-import { themeVars, exampleStyle } from './styles.css.ts';
-
-const customTheme = createInlineTheme(themeVars, {
-  small: '4px',
-  medium: '8px',
-  large: '16px'
-});
-
-document.write(`
-  <section style="${customTheme}">
-    <h1 class="${exampleStyle}">Hello world!</h1>
-  </section>
-`);
-```
-
 ### createThemeVars
 
 Creates a collection of CSS Variables without coupling them to a specific theme variant.
@@ -442,7 +423,7 @@ export const themeB = createTheme(themeVars, {
 
 ### assignVars
 
-Allows you to set an entire collection of CSS Variables anywhere within a style block.
+Assigns a collection of CSS Variables anywhere within a style block.
 
 > 💡 This is useful for creating responsive themes since it can be used within `@media` blocks.
 
@@ -598,6 +579,65 @@ globalKeyframes('rotate', {
 export const animated = style({
   animation: `3s infinite rotate`;
 });
+```
+
+## Dynamic API
+
+We also provide a lightweight standalone package to support dynamic runtime theming.
+
+```bash
+$ yarn add --dev @vanilla-extract/dynamic
+```
+
+### createInlineTheme
+
+Generates a custom theme at runtime as an inline style object.
+
+```ts
+import { createInlineTheme } from '@vanilla-extract/dynamic';
+import { themeVars, exampleStyle } from './styles.css.ts';
+
+const customTheme = createInlineTheme(themeVars, {
+  small: '4px',
+  medium: '8px',
+  large: '16px'
+});
+
+document.write(`
+  <section style="${customTheme}">
+    <h1 class="${exampleStyle}">Hello world!</h1>
+  </section>
+`);
+```
+
+### setElementTheme
+
+Sets a collection of CSS Variables on an element.
+
+```ts
+import { setElementTheme } from '@vanilla-extract/dynamic';
+import { themeVars } from './styles.css.ts';
+
+const element = document.getElementById('myElement');
+setElementTheme(element, themeVars, {
+  small: '4px',
+  medium: '8px',
+  large: '16px'
+});
+```
+
+> 💡 All variables passed into this function must be assigned or it’s a type error.
+
+### setElementVar
+
+Sets a single var on an element.
+
+```ts
+import { setElementVar } from '@vanilla-extract/dynamic';
+import { themeVars } from './styles.css.ts';
+
+const element = document.getElementById('myElement');
+setElementVar(element, themeVars.color.brand, 'darksalmon');
 ```
 
 ## Utility functions

@@ -1,3 +1,4 @@
+import type { Contract, MapLeafNodes } from '@vanilla-extract/private';
 import type { PropertiesFallback, AtRule } from 'csstype';
 
 import type { SimplePseudos } from './transformCss';
@@ -81,24 +82,19 @@ export type CSS =
   | CSSKeyframesBlock
   | CSSSelectorBlock;
 
-export interface Adapter {
-  appendCss: (css: CSS, fileScope: string) => void;
-  registerClassName: (className: string) => void;
-  onEndFileScope: (fileScope: string) => void;
-}
-
-export type Contract = {
-  [key: string]: string | null | Contract;
+export type FileScope = {
+  packageName?: string;
+  filePath: string;
 };
+
+export interface Adapter {
+  appendCss: (css: CSS, fileScope: FileScope) => void;
+  registerClassName: (className: string) => void;
+  onEndFileScope: (fileScope: FileScope) => void;
+}
 
 export type Tokens = {
   [key: string]: string | Tokens;
-};
-
-export type MapLeafNodes<Obj, LeafType> = {
-  [Prop in keyof Obj]: Obj[Prop] extends Record<string | number, any>
-    ? MapLeafNodes<Obj[Prop], LeafType>
-    : LeafType;
 };
 
 export type ThemeVars<ThemeContract extends Contract> = MapLeafNodes<
