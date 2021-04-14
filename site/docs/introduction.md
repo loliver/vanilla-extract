@@ -28,6 +28,8 @@ Basically, it’s “[CSS Modules](https://github.com/css-modules/css-modules)-i
 
 🏃‍♂️ &nbsp; Optional runtime version for development and testing.
 
+🙈 &nbsp; Optional API for dynamic runtime theming.
+
 ---
 
 **Write your styles in `.css.ts` files.**

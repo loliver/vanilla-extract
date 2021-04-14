@@ -190,27 +190,6 @@ export const themeVars = createGlobalTheme(':root', {
 
 > 💡 All theme variants must provide a value for every variable or it’s a type error.
 
-## createInlineTheme
-
-Generates a custom theme at runtime as an inline style object.
-
-```ts
-import { createInlineTheme } from '@vanilla-extract/css';
-import { themeVars, exampleStyle } from './styles.css.ts';
-
-const customTheme = createInlineTheme(themeVars, {
-  small: '4px',
-  medium: '8px',
-  large: '16px'
-});
-
-document.write(`
-  <section style="${customTheme}">
-    <h1 class="${exampleStyle}">Hello world!</h1>
-  </section>
-`);
-```
-
 ## createThemeVars
 
 Creates a collection of CSS Variables without coupling them to a specific theme variant.
@@ -253,7 +232,7 @@ export const themeB = createTheme(themeVars, {
 
 ## assignVars
 
-Allows you to set an entire collection of CSS Variables anywhere within a style block.
+Assigns a collection of CSS Variables anywhere within a style block.
 
 > 💡 This is useful for creating responsive themes since it can be used within `@media` blocks.
 
