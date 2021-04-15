@@ -130,7 +130,7 @@ export const [themeClass, themeVars] = createTheme({
     large: px(5 * grid),
     xlarge: px(8 * grid),
     xxlarge: px(12 * grid),
-    xxxlarge: px(20 * grid),
+    xxxlarge: px(24 * grid),
   },
   contentWidth: {
     standard: px(860),

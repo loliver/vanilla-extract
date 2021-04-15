@@ -27,7 +27,7 @@ const NavLink = ({
       className={classnames(
         styles.sectionLinkTitle,
         styles.underlineOnHover,
-        useTextStyles({ size, weight: 'strong', baseline }),
+        useTextStyles({ size, baseline }),
       )}
     >
       <Box component="span" display="block" paddingY="xsmall">
@@ -49,7 +49,7 @@ const NavSection = ({
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }) => (
   <>
-    <NavLink size="small" to={href} exact onClick={onClick}>
+    <NavLink to={href} exact onClick={onClick}>
       {title}
     </NavLink>
     {children}
@@ -84,13 +84,12 @@ const SubLink = ({
     >
       <Box
         className={styles.subLinkContainer}
-        paddingLeft="large"
+        paddingLeft="xlarge"
         paddingY="xsmall"
         key={hash}
       >
         <Box
           borderRadius="full"
-          background="green"
           className={classnames(
             styles.activeIndicator,
             active ? styles.active : '',

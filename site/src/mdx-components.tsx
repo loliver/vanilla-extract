@@ -94,12 +94,12 @@ export default {
     </Box>
   ),
   h2: ({ component, ...props }: HeadingProps) => (
-    <Box component="h2" marginBottom="xlarge">
+    <Box component="h2" paddingTop="xlarge" paddingBottom="xlarge">
       <Heading component="span" {...props} level="3" />
     </Box>
   ),
   h3: ({ component, ...props }: HeadingProps) => (
-    <Box component="h3" marginBottom="xlarge">
+    <Box component="h3" paddingTop="xlarge" paddingBottom="xlarge">
       <Heading component="span" {...props} level="3" />
     </Box>
   ),
@@ -111,7 +111,7 @@ export default {
     'data-language': string;
     dangerouslySetInnerHTML: { __html: string };
   }) => (
-    <Box marginBottom={{ mobile: 'small', desktop: 'xlarge' }}>
+    <Box marginBottom={{ mobile: 'small', desktop: 'large' }}>
       <Code language={language}>{dangerouslySetInnerHTML}</Code>
     </Box>
   ),

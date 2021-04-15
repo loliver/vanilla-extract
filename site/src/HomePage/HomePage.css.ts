@@ -23,7 +23,7 @@ export const skewedContainer = style({
     zIndex: -1,
     width: '110vw',
     left: '-10vw',
-    height: '120px',
+    height: '140px',
     background: themeVars.background.green,
     transform: 'rotate(-2deg)',
   },

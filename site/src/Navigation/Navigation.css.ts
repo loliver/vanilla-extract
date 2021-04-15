@@ -4,8 +4,6 @@ import { themeVars } from '../themes.css';
 
 export const sectionLinkTitle = style({
   textTransform: 'uppercase',
-  fontStyle: 'italic',
-  fontFamily: themeVars.fonts.code,
 });
 
 export const underlineOnHover = style({
@@ -19,6 +17,7 @@ export const underlineOnHover = style({
 export const active = style({});
 
 export const activeIndicator = style({
+  background: `linear-gradient(135deg, transparent 2%, ${themeVars.background.green} 40%)`,
   position: 'absolute',
   zIndex: -1,
   top: 0,
