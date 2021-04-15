@@ -6,10 +6,17 @@ const grid = 4;
 const px = (value: string | number) => `${value}px`;
 
 const fontMetrics = {
-  heading: {
+  brand: {
     capHeight: 669,
     ascent: 1026,
     descent: -432,
+    lineGap: 0,
+    unitsPerEm: 1000,
+  },
+  heading: {
+    capHeight: 700,
+    ascent: 992,
+    descent: -310,
     lineGap: 0,
     unitsPerEm: 1000,
   },
@@ -107,8 +114,9 @@ const calculateTypographyStyles = (
 
 export const [themeClass, themeVars] = createTheme({
   fonts: {
+    brand: 'Shrikhand, "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif',
     heading:
-      'Shrikhand, "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif',
+      '"DM Sans", "Helvetica Neue", HelveticaNeue, Helvetica, sans-serif',
     body:
       '-apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", HelveticaNeue, Helvetica, Arial, sans-serif',
     code: '"Roboto Mono", Menlo, monospace',
@@ -168,6 +176,19 @@ export const [themeClass, themeVars] = createTheme({
       },
       'heading',
     ),
+    h4: calculateTypographyStyles(
+      {
+        mobile: {
+          fontSize: 18,
+          rows: 8,
+        },
+        desktop: {
+          fontSize: 22,
+          rows: 9,
+        },
+      },
+      'heading',
+    ),
   },
   text: {
     standard: calculateTypographyStyles(
@@ -199,8 +220,8 @@ export const [themeClass, themeVars] = createTheme({
     small: calculateTypographyStyles(
       {
         mobile: {
-          fontSize: 18,
-          rows: 9,
+          fontSize: 16,
+          rows: 8,
         },
         desktop: {
           fontSize: 16,

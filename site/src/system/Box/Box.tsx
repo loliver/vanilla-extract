@@ -4,7 +4,8 @@ import { Breakpoint } from '../../themeUtils';
 import * as resetStyles from '../styles/reset.css';
 import * as atomStyles from '../styles/atoms.css';
 
-export type Space = keyof typeof atomStyles['padding']['bottom'];
+export type Paddings = keyof typeof atomStyles['padding']['bottom'];
+export type Margins = keyof typeof atomStyles['margin']['bottom'];
 
 type ResponsiveProp<AtomName> =
   | AtomName
@@ -12,20 +13,20 @@ type ResponsiveProp<AtomName> =
 
 export interface BoxProps extends AllHTMLAttributes<HTMLElement> {
   component?: ElementType;
-  padding?: ResponsiveProp<Space>;
-  paddingX?: ResponsiveProp<Space>;
-  paddingY?: ResponsiveProp<Space>;
-  paddingTop?: ResponsiveProp<Space>;
-  paddingBottom?: ResponsiveProp<Space>;
-  paddingLeft?: ResponsiveProp<Space>;
-  paddingRight?: ResponsiveProp<Space>;
-  margin?: ResponsiveProp<Space>;
-  marginX?: ResponsiveProp<Space>;
-  marginY?: ResponsiveProp<Space>;
-  marginTop?: ResponsiveProp<Space>;
-  marginBottom?: ResponsiveProp<Space>;
-  marginLeft?: ResponsiveProp<Space>;
-  marginRight?: ResponsiveProp<Space>;
+  padding?: ResponsiveProp<Paddings>;
+  paddingX?: ResponsiveProp<Paddings>;
+  paddingY?: ResponsiveProp<Paddings>;
+  paddingTop?: ResponsiveProp<Paddings>;
+  paddingBottom?: ResponsiveProp<Paddings>;
+  paddingLeft?: ResponsiveProp<Paddings>;
+  paddingRight?: ResponsiveProp<Paddings>;
+  margin?: ResponsiveProp<Margins>;
+  marginX?: ResponsiveProp<Margins>;
+  marginY?: ResponsiveProp<Margins>;
+  marginTop?: ResponsiveProp<Margins>;
+  marginBottom?: ResponsiveProp<Margins>;
+  marginLeft?: ResponsiveProp<Margins>;
+  marginRight?: ResponsiveProp<Margins>;
   display?: ResponsiveProp<keyof typeof atomStyles.display>;
   alignItems?: ResponsiveProp<keyof typeof atomStyles.alignItems>;
   justifyContent?: ResponsiveProp<keyof typeof atomStyles.justifyContent>;

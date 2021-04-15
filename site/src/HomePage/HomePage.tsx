@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import dedent from 'dedent';
-import { Box, Stack, ContentBlock } from '../system';
+import { Box, Stack, ContentBlock, Columns } from '../system';
 import { NewWindow } from '../NewWindow/NewWindow';
 import { Heading } from '../Typography/Heading';
 import { Chevron } from '../Chevron/Chevron';
@@ -8,31 +8,23 @@ import Link from '../Typography/Link';
 import Text from '../Typography/Text';
 import Logo from '../Logo/Logo';
 import Code from '../Code/Code';
+import * as styles from './HomePage.css';
 
 export const HomePage = () => {
   return (
     <>
-      <Box
-        paddingY="xxxlarge"
-        paddingX={{ mobile: 'none', desktop: 'xxlarge' }}
-        background="green"
-      >
+      <Box paddingY="xxxlarge" className={styles.skewedContainer}>
         <ContentBlock size="large" guttersOnMobile>
-          <Box
-            display="flex"
-            flexDirection={{ mobile: 'column', desktop: 'row' }}
-            alignItems={{ mobile: 'center', desktop: 'center' }}
-            paddingY={{ mobile: 'medium', desktop: 'xxxlarge' }}
-          >
-            <Box flexGrow={0} style={{ maxWidth: 600 }}>
+          <Box paddingY={{ mobile: 'medium', desktop: 'xxlarge' }}>
+            <Columns space="xxlarge" collapseOnMobile alignY="center">
               <Stack space="xxlarge">
                 <Logo size={100} />
-                <Heading level="1">
-                  The zero-runtime
+                <Heading level="1" branded>
+                  Zero-runtime
                   <br />
-                  CSS-in-TypeScript
+                  Stylesheets in
                   <br />
-                  preprocessor.
+                  TypeScript.
                 </Heading>
                 <Text>
                   Write your styles in TypeScript (or JavaScript) with locally
@@ -50,16 +42,9 @@ export const HomePage = () => {
                   </Link>
                 </Box>
               </Stack>
-            </Box>
-            <Box
-              borderRadius="large"
-              marginLeft={{ mobile: 'none', desktop: 'xxlarge' }}
-              marginTop={{ mobile: 'xxlarge', desktop: 'none' }}
-              flexGrow={1}
-              style={{ overflow: 'hidden' }}
-            >
-              <Code language="tsx">
-                {dedent`import { createGlobalTheme, style } from '@vanilla-extract/css';
+              <Box borderRadius="large" style={{ overflow: 'hidden' }}>
+                <Code language="tsx">
+                  {dedent`import { createGlobalTheme, style } from '@vanilla-extract/css';
 
                 // Set up the theme via CSS Variables
                 export const themeVars = createGlobalTheme(':root', {
@@ -78,27 +63,83 @@ export const HomePage = () => {
                   color: 'white',
                   padding: '10px'
                 });`}
-              </Code>
-            </Box>
+                </Code>
+              </Box>
+            </Columns>
           </Box>
         </ContentBlock>
       </Box>
 
-      <ContentBlock guttersOnMobile>
-        <Box
-          padding={{ mobile: 'xlarge', desktop: 'xxlarge' }}
-          borderRadius="large"
-          background="body"
-          style={{
-            transform: 'translateY(-50%)',
-            boxShadow: '0 0 50px -10px #24966180',
-            fontFamily: '"Roboto Mono", Menlo, monospace',
-          }}
-        >
-          $ npm install <span style={{ whiteSpace: 'nowrap' }}>--save-dev</span>{' '}
-          <span style={{ whiteSpace: 'nowrap' }}>@vanilla-extract/css</span>
-        </Box>
-      </ContentBlock>
+      <Stack space="xxxlarge">
+        <ContentBlock guttersOnMobile>
+          <Box
+            padding={{ mobile: 'xlarge', desktop: 'xxlarge' }}
+            borderRadius="large"
+            background="body"
+            style={{
+              boxShadow: '0 0 50px -10px #24966180',
+              fontFamily: '"Roboto Mono", Menlo, monospace',
+            }}
+          >
+            $ npm install{' '}
+            <span style={{ whiteSpace: 'nowrap' }}>--save-dev</span>{' '}
+            <span style={{ whiteSpace: 'nowrap' }}>@vanilla-extract/css</span>
+          </Box>
+        </ContentBlock>
+
+        <ContentBlock guttersOnMobile size="large">
+          <Columns space="xxlarge" collapseOnMobile>
+            <Feature title="Type-safe preprocessor">
+              All styles generated at build time — just like{' '}
+              <Link to="https://sass-lang.com" size="small">
+                Sass
+              </Link>
+              ,{' '}
+              <Link to="http://lesscss.org)" size="small">
+                LESS
+              </Link>
+              , etc, but with a type-safe contract.
+            </Feature>
+
+            <Feature title="Local scoped CSS">
+              The power of deterministic, scoped styles using CSS Modules —
+              extended to CSS variables, keyframes and font-faces.
+            </Feature>
+
+            <Feature title="High-level theming">
+              Supports multiple themes simultaneously via first class scoping of
+              CSS variables. No globals!
+            </Feature>
+
+            <Feature title="Utilities">
+              Provides type-safe utilities for generating variable-based
+              &ldquo;calc&rdquo; expressions.
+            </Feature>
+          </Columns>
+        </ContentBlock>
+      </Stack>
     </>
   );
 };
+
+const Feature = ({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) => (
+  <Box style={{ position: 'relative' }} paddingLeft="xlarge">
+    <Box
+      style={{ position: 'absolute' }}
+      className={styles.featureKeyLine}
+      paddingLeft="xsmall"
+      marginTop="-small"
+      borderRadius="medium"
+    />
+    <Stack space="xlarge">
+      <Heading level="4">{title}</Heading>
+      <Text size="small">{children}</Text>
+    </Stack>
+  </Box>
+);

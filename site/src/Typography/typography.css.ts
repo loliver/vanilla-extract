@@ -56,4 +56,5 @@ export const heading = {
   '1': mapToStyles(makeTypographyRules(themeVars.heading.h1)),
   '2': mapToStyles(makeTypographyRules(themeVars.heading.h2)),
   '3': mapToStyles(makeTypographyRules(themeVars.heading.h3)),
+  '4': mapToStyles(makeTypographyRules(themeVars.heading.h4)),
 };

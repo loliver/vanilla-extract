@@ -1,20 +1,32 @@
+import { calc } from '@vanilla-extract/css-utils';
 import { mapToStyles } from '@vanilla-extract/css';
 import { mapToProperty } from '../../themeUtils';
 import { themeVars } from '../../themes.css';
+import { mapKeys, mapValues, omit } from 'lodash';
 
 const space = themeVars.spacing;
 
+const negativeSpace = mapValues(
+  mapKeys(omit(space, 'none'), (_, key) => `-${key}`),
+  (value) => `${calc(value).negate()}`,
+);
+
+const margins = {
+  ...space,
+  ...negativeSpace,
+};
+
 export const margin = {
-  top: mapToStyles(space, mapToProperty('marginTop', 'mobile')),
-  bottom: mapToStyles(space, mapToProperty('marginBottom', 'mobile')),
-  left: mapToStyles(space, mapToProperty('marginLeft', 'mobile')),
-  right: mapToStyles(space, mapToProperty('marginRight', 'mobile')),
+  top: mapToStyles(margins, mapToProperty('marginTop', 'mobile')),
+  bottom: mapToStyles(margins, mapToProperty('marginBottom', 'mobile')),
+  left: mapToStyles(margins, mapToProperty('marginLeft', 'mobile')),
+  right: mapToStyles(margins, mapToProperty('marginRight', 'mobile')),
 };
 export const marginDesktop = {
-  top: mapToStyles(space, mapToProperty('marginTop', 'desktop')),
-  bottom: mapToStyles(space, mapToProperty('marginBottom', 'desktop')),
-  left: mapToStyles(space, mapToProperty('marginLeft', 'desktop')),
-  right: mapToStyles(space, mapToProperty('marginRight', 'desktop')),
+  top: mapToStyles(margins, mapToProperty('marginTop', 'desktop')),
+  bottom: mapToStyles(margins, mapToProperty('marginBottom', 'desktop')),
+  left: mapToStyles(margins, mapToProperty('marginLeft', 'desktop')),
+  right: mapToStyles(margins, mapToProperty('marginRight', 'desktop')),
 };
 
 export const padding = {
