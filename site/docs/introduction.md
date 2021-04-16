@@ -36,7 +36,6 @@ Basically, it’s “[CSS Modules](https://github.com/css-modules/css-modules)-i
 
 ```ts
 // styles.css.ts
-
 import { createTheme, style } from '@vanilla-extract/css';
 
 export const [themeClass, themeVars] = createTheme({
@@ -62,7 +61,6 @@ export const exampleStyle = style({
 
 ```tsx
 // app.ts
-
 import { themeClass, exampleStyle } from './styles.css.ts';
 
 document.write(`

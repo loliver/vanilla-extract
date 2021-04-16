@@ -166,7 +166,7 @@ export const [themeClass, themeVars] = createTheme({
     h3: calculateTypographyStyles(
       {
         mobile: {
-          fontSize: 22,
+          fontSize: 24,
           rows: 8,
         },
         desktop: {
@@ -179,7 +179,7 @@ export const [themeClass, themeVars] = createTheme({
     h4: calculateTypographyStyles(
       {
         mobile: {
-          fontSize: 18,
+          fontSize: 22,
           rows: 8,
         },
         desktop: {
@@ -195,11 +195,11 @@ export const [themeClass, themeVars] = createTheme({
       {
         mobile: {
           fontSize: 18,
-          rows: 8,
+          rows: 9,
         },
         desktop: {
           fontSize: 20,
-          rows: 9,
+          rows: 10,
         },
       },
       'body',
@@ -251,6 +251,7 @@ export const [themeClass, themeVars] = createTheme({
   color: {
     strong: '#26232c',
     neutral: palette.grey[700],
+    secondary: palette.grey[500],
     code: palette.grey[100],
     link: palette.grey[700],
   },

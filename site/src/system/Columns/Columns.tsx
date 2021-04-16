@@ -1,16 +1,16 @@
 import React, { Children, ReactNode } from 'react';
 import { Box, BoxProps } from '../Box/Box';
 
-type alignY = 'top' | 'center' | 'bottom';
+type AlignY = 'top' | 'center' | 'bottom';
 
 interface Props {
   children: ReactNode;
   space: BoxProps['padding'];
-  alignY?: alignY;
+  alignY?: AlignY;
   collapseOnMobile?: boolean;
 }
 
-const resolveAlignY: Record<alignY, BoxProps['alignItems']> = {
+const resolveAlignY: Record<AlignY, BoxProps['alignItems']> = {
   top: 'flexStart',
   bottom: 'flexEnd',
   center: 'center',

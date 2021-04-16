@@ -5,7 +5,7 @@ import { responsiveStyle } from '../themeUtils';
 export const featureKeyLine = style({
   left: 0,
   top: 0,
-  background: themeVars.palette.pink[200],
+  background: themeVars.palette.pink[300],
   transform: 'skew(15deg)',
   ...responsiveStyle({
     mobile: { height: themeVars.text.standard.mobile.lineHeight },
@@ -21,10 +21,34 @@ export const skewedContainer = style({
     content: '""',
     position: 'absolute',
     zIndex: -1,
-    width: '110vw',
-    left: '-10vw',
-    height: '140px',
+    width: '100vw',
+    height: '170px',
     background: themeVars.background.green,
-    transform: 'rotate(-2deg)',
+    clipPath: 'polygon(0 0,100% 0,100% 60%,0 100%)',
+  },
+});
+
+export const skewedContainerSecondary = style({
+  background: themeVars.background.blue,
+  position: 'relative',
+  ':before': {
+    content: '""',
+    position: 'absolute',
+    zIndex: -1,
+    width: '100vw',
+    height: '100px',
+    top: '-60px',
+    background: themeVars.background.blue,
+    clipPath: 'polygon(0 0, 100% 60%, 100% 100%, 0 100%)',
+  },
+  ':after': {
+    content: '""',
+    position: 'absolute',
+    zIndex: -1,
+    width: '100vw',
+    height: '100px',
+    bottom: '-70px',
+    background: themeVars.background.blue,
+    clipPath: 'polygon(0 0, 100% 0, 100% 50%, 0 100%)',
   },
 });

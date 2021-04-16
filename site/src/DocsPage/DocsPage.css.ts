@@ -7,6 +7,21 @@ const sidebarWidth = '300px';
 
 export const header = style({
   height: headerHeight,
+  zIndex: 1,
+  ':after': {
+    content: '""',
+    position: 'absolute',
+    zIndex: -1,
+    width: '100vw',
+    height: '100px',
+    left: 0,
+    top: 0,
+    bottom: '-30px',
+    background: themeVars.background.green,
+    clipPath: 'polygon(0 0, 100% 0, 100% 20%, 0 100%)',
+    opacity: 0.8,
+    backdropFilter: 'blur(4px)',
+  },
   '@media': {
     'screen and (min-width: 1024px)': {
       position: 'fixed',
@@ -19,6 +34,7 @@ export const container = style({
   margin: '0 auto',
   maxWidth: contentWidth,
   paddingBottom: 200,
+  paddingTop: themeVars.spacing.xlarge,
   '@media': {
     'screen and (min-width: 1024px)': {
       paddingTop: headerHeight,
@@ -37,9 +53,19 @@ export const sidebar = style({
   right: 0,
   width: '40vw',
   minWidth: sidebarWidth,
-  overflow: 'auto',
   transition: 'transform .15s ease, opacity .15s ease',
   background: themeVars.background.menu,
+  ':before': {
+    content: '""',
+    position: 'absolute',
+    zIndex: -1,
+    left: '-30px',
+    top: 0,
+    bottom: 0,
+    width: '50px',
+    background: themeVars.background.menu,
+    clipPath: 'polygon(100% 0, 100% 100%, 0 100%, 60% 0)',
+  },
 
   '@media': {
     'screen and (min-width: 1024px)': {
@@ -96,6 +122,6 @@ export const backdrop_isHidden = style({
 });
 
 export const backdrop_isVisible = style({
-  opacity: 0.7,
+  opacity: 0.8,
   pointerEvents: 'auto',
 });

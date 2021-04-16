@@ -88,7 +88,9 @@ export const DocsPage = () => {
           menuOpen ? styles.sidebarOpen : '',
         )}
       >
-        <Navigation onSelect={closeMenu} />
+        <Box style={{ overflow: 'auto', height: '100%' }}>
+          <Navigation onSelect={closeMenu} />
+        </Box>
       </Box>
       <Box className={styles.container}>
         <Box component="main" paddingX="large" className={styles.main}>

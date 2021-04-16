@@ -18,7 +18,7 @@ export default ({ language, children }: CodeProps) => {
   const padding = { mobile: 'large', desktop: 'xlarge' } as const;
 
   return (
-    <Box className={styles.root} padding={padding}>
+    <Box className={styles.root} borderRadius="large" padding={padding}>
       <Text size="code" component="div" color="code" baseline={false}>
         {typeof children === 'string' ? (
           <SyntaxHighlighter language={language} style={styles.theme}>

@@ -3,7 +3,6 @@ import { themeVars } from '../themes.css';
 
 export const root = style({
   backgroundColor: themeVars.background.code,
-  borderRadius: themeVars.border.width.large,
   overflowX: 'auto',
   color: themeVars.color.code,
 });

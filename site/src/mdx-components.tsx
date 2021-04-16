@@ -94,12 +94,27 @@ export default {
     </Box>
   ),
   h2: ({ component, ...props }: HeadingProps) => (
-    <Box component="h2" paddingTop="xlarge" paddingBottom="xlarge">
-      <Heading component="span" {...props} level="3" />
+    <Box component="h2" marginTop="xxxlarge" marginBottom="xlarge">
+      <Box style={{ position: 'relative' }} paddingLeft="large">
+        <Box
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            background: '#F090F5',
+            height: 36,
+            transform: 'skew(-15deg)',
+          }}
+          paddingLeft="xsmall"
+          marginTop="-small"
+          borderRadius="medium"
+        />
+        <Heading component="span" {...props} level="3" />
+      </Box>
     </Box>
   ),
   h3: ({ component, ...props }: HeadingProps) => (
-    <Box component="h3" paddingTop="xlarge" paddingBottom="xlarge">
+    <Box component="h3" marginTop="xlarge" marginBottom="xlarge">
       <Heading component="span" {...props} level="3" />
     </Box>
   ),
