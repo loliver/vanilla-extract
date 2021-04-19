@@ -5,14 +5,6 @@ export const sectionLinkTitle = style({
   textTransform: 'uppercase',
 });
 
-export const underlineOnHover = style({
-  selectors: {
-    ['&:not(:hover)']: {
-      textDecoration: 'none',
-    },
-  },
-});
-
 export const active = style({});
 
 export const activeIndicator = style({

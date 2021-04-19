@@ -1,8 +1,4 @@
 import React, { MouseEvent, ReactNode } from 'react';
-import {
-  NavLink as ReactRouterNavLink,
-  NavLinkProps as ReactRouterNavLinkProps,
-} from 'react-router-dom';
 import classnames from 'classnames';
 import { Box, Stack } from '../system';
 import docs from '../docs-store';
@@ -10,32 +6,6 @@ import Link from '../Typography/Link';
 import { useTextStyles } from '../Typography/Text';
 import { useActiveHash } from '../useHeadingRoute';
 import * as styles from './Navigation.css';
-
-interface NavLinkProps extends ReactRouterNavLinkProps {
-  baseline?: boolean;
-  size?: 'standard' | 'small' | 'xsmall';
-}
-const NavLink = ({
-  baseline = false,
-  size = 'standard',
-  children,
-  ...restProps
-}: NavLinkProps) => {
-  return (
-    <ReactRouterNavLink
-      {...restProps}
-      className={classnames(
-        styles.sectionLinkTitle,
-        styles.underlineOnHover,
-        useTextStyles({ size, baseline }),
-      )}
-    >
-      <Box component="span" display="block" paddingY="xsmall">
-        {children}
-      </Box>
-    </ReactRouterNavLink>
-  );
-};
 
 const NavSection = ({
   href,
@@ -49,9 +19,21 @@ const NavSection = ({
   onClick?: (event: MouseEvent<HTMLAnchorElement>) => void;
 }) => (
   <>
-    <NavLink to={href} exact onClick={onClick}>
-      {title}
-    </NavLink>
+    <Link
+      to={href}
+      exact
+      onClick={onClick}
+      highlightOnFocus={false}
+      underline="hover"
+      className={classnames(
+        styles.sectionLinkTitle,
+        useTextStyles({ size: 'standard', baseline: false }),
+      )}
+    >
+      <Box component="span" display="block" paddingY="xsmall">
+        {title}
+      </Box>
+    </Link>
     {children}
   </>
 );

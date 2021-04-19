@@ -2,6 +2,8 @@
 title: Utility functions
 ---
 
+# Utility functions
+
 We also provide a standalone package of optional utility functions to make it easier to work with CSS in TypeScript.
 
 > 💡 This package can be used with any CSS-in-JS library.

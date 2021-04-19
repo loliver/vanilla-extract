@@ -138,11 +138,12 @@ export default {
   ul: (props: Children) => (
     <Box
       component="ul"
-      paddingBottom="large"
+      paddingBottom="xlarge"
       className={useTextStyles({ baseline: false })}
       style={{
         listStyle: 'disc',
-        padding: '0 1em',
+        paddingLeft: '1em',
+        paddingRight: '1em',
       }}
     >
       {props.children}
@@ -151,11 +152,12 @@ export default {
   ol: (props: Children) => (
     <Box
       component="ol"
-      paddingBottom="large"
+      paddingBottom="xlarge"
       className={useTextStyles({ baseline: false })}
       style={{
         listStyle: 'decimal',
-        padding: '0 1em',
+        paddingLeft: '1em',
+        paddingRight: '1em',
       }}
     >
       {props.children}
