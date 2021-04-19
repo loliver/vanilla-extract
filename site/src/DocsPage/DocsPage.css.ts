@@ -5,6 +5,14 @@ const headerHeight = '120px';
 const contentWidth = '1200px';
 const sidebarWidth = '300px';
 
+export const homeLink = style({
+  textDecoration: 'none',
+  ':focus': {
+    outline: 'none',
+    filter: `drop-shadow(2px 4px 2px ${themeVars.palette.pink[600]})`,
+  },
+});
+
 export const header = style({
   height: headerHeight,
   zIndex: 1,

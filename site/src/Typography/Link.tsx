@@ -19,20 +19,16 @@ export default ({
   size = 'standard',
   color = 'link',
   underline = 'hover',
-  variant = 'link',
   highlightOnFocus = true,
   className,
   ...restProps
 }: LinkProps) => {
-  const classNames =
-    variant === 'link'
-      ? classnames(
-          underline === 'hover' ? styles.underlineOnHover : undefined,
-          highlightOnFocus ? styles.highlightOnHover : undefined,
-          useTextStyles({ size, color, baseline }),
-          className,
-        )
-      : styles.button;
+  const classNames = classnames(
+    underline === 'hover' ? styles.underlineOnHover : undefined,
+    highlightOnFocus ? styles.highlightOnHover : undefined,
+    useTextStyles({ size, color, baseline }),
+    className,
+  );
 
   if (typeof to === 'string' && /^http/.test(to)) {
     return <a href={to} {...restProps} className={classNames} />;

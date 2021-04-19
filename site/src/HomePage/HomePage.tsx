@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import dedent from 'dedent';
-import { Box, Stack, ContentBlock, Columns } from '../system';
+import { Box, Stack, ContentBlock, Columns, ButtonLink } from '../system';
 import { NewWindow } from '../NewWindow/NewWindow';
 import { Heading } from '../Typography/Heading';
 import { Chevron } from '../Chevron/Chevron';
@@ -36,16 +36,20 @@ export const HomePage = () => {
                 </Text>
                 <Box display="flex" alignItems="center">
                   <Box paddingRight="xlarge">
-                    <Link variant="button" to="/documentation">
-                      Documentation <Chevron direction="right" />
-                    </Link>
+                    <ButtonLink
+                      to="/documentation"
+                      icon={<Chevron direction="right" />}
+                    >
+                      Documentation
+                    </ButtonLink>
                   </Box>
-                  <Link
+                  <ButtonLink
                     to="https://github.com/seek-oss/vanilla-extract"
-                    highlightOnFocus={false}
+                    variant="transparent"
+                    icon={<NewWindow />}
                   >
-                    GitHub <NewWindow />
-                  </Link>
+                    GitHub
+                  </ButtonLink>
                 </Box>
               </Stack>
               <Code language="tsx">
@@ -320,7 +324,7 @@ export const HomePage = () => {
           <Box component="footer" paddingY="xxxlarge">
             <Stack space="xxlarge" align="center">
               <Logo size={60} />
-              <Columns space="xxxlarge">
+              <Columns space="xxxlarge" collapseOnMobile>
                 <Stack space="xlarge" align="center">
                   <Heading level="4">Documentation</Heading>
                   {docsStore.map(({ title, route }) => (

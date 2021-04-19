@@ -65,7 +65,11 @@ export const DocsPage = () => {
         padding="large"
         className={styles.header}
       >
-        <ReactRouterLink to="/" style={{ textDecoration: 'none' }}>
+        <ReactRouterLink
+          to="/"
+          className={styles.homeLink}
+          title="Back to home"
+        >
           <Logo size={40} />
         </ReactRouterLink>
         <Fab open={menuOpen} onClick={toggleMenu} />
