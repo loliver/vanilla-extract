@@ -9,6 +9,16 @@ export const underlineOnHover = style({
   },
 });
 
+export const highlightOnHover = style({
+  ':hover': {
+    color: themeVars.palette.pink[500],
+  },
+  ':focus': {
+    outline: 'none',
+    color: themeVars.palette.pink[500],
+  },
+});
+
 export const button = style({
   textDecoration: 'none',
   padding: `${themeVars.spacing.medium} ${themeVars.spacing.large}`,

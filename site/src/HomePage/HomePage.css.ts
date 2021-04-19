@@ -52,3 +52,22 @@ export const skewedContainerSecondary = style({
     clipPath: 'polygon(0 0, 100% 0, 100% 50%, 0 100%)',
   },
 });
+
+export const tweetLink = style({
+  ':hover': {
+    textDecoration: 'none',
+  },
+  ':focus': {
+    outline: 'none',
+  },
+});
+
+export const tweet = style({
+  width: 400,
+  boxShadow: `0 0 30px -10px ${themeVars.background.blue}`,
+  selectors: {
+    [`${tweetLink}:focus &`]: {
+      boxShadow: `0 0 30px -10px ${themeVars.palette.pink[400]}`,
+    },
+  },
+});

@@ -74,6 +74,7 @@ const SubLink = ({
       size="small"
       to={`${to}${hash ? `#${hash}` : ''}`}
       onClick={onClick}
+      highlightOnFocus={false}
       style={
         active
           ? {

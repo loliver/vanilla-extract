@@ -254,6 +254,7 @@ export const [themeClass, themeVars] = createTheme({
     secondary: palette.grey[500],
     code: palette.grey[100],
     link: palette.grey[700],
+    highlight: palette.pink[500],
   },
   background: {
     body: '#fff',

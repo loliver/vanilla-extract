@@ -2,7 +2,7 @@ import React from 'react';
 import { Link, NavLinkProps } from 'react-router-dom';
 import { HashLink } from 'react-router-hash-link';
 import classnames from 'classnames';
-import { useTextStyles } from './Text';
+import { TextProps, useTextStyles } from './Text';
 import * as styles from './Link.css';
 
 interface LinkProps extends NavLinkProps {
@@ -10,13 +10,17 @@ interface LinkProps extends NavLinkProps {
   size?: 'standard' | 'small';
   underline?: 'always' | 'hover';
   variant?: 'link' | 'button';
+  color?: TextProps['color'];
+  highlightOnFocus?: boolean;
 }
 export default ({
   to,
   baseline = false,
   size = 'standard',
+  color = 'link',
   underline = 'hover',
   variant = 'link',
+  highlightOnFocus = true,
   className,
   ...restProps
 }: LinkProps) => {
@@ -24,7 +28,9 @@ export default ({
     variant === 'link'
       ? classnames(
           underline === 'hover' ? styles.underlineOnHover : undefined,
-          useTextStyles({ size, color: 'link', baseline }),
+          highlightOnFocus ? styles.highlightOnHover : undefined,
+          useTextStyles({ size, color, baseline }),
+          className,
         )
       : styles.button;
 

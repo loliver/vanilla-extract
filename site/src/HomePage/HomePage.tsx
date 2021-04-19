@@ -39,7 +39,10 @@ export const HomePage = () => {
                       Documentation <Chevron direction="right" />
                     </Link>
                   </Box>
-                  <Link to="https://github.com/seek-oss/vanilla-extract">
+                  <Link
+                    to="https://github.com/seek-oss/vanilla-extract"
+                    highlightOnFocus={false}
+                  >
                     GitHub <NewWindow />
                   </Link>
                 </Box>
@@ -90,11 +93,15 @@ export const HomePage = () => {
             <Columns space="xxlarge" collapseOnMobile>
               <Feature title="Type-safe preprocessor">
                 All styles generated at build time — just like{' '}
-                <Link to="https://sass-lang.com" size="small">
+                <Link
+                  to="https://sass-lang.com"
+                  size="small"
+                  underline="always"
+                >
                   Sass
                 </Link>
                 ,{' '}
-                <Link to="http://lesscss.org)" size="small">
+                <Link to="http://lesscss.org)" size="small" underline="always">
                   LESS
                 </Link>
                 , etc, but with a type-safe contract.
@@ -168,23 +175,19 @@ export const HomePage = () => {
               <ContentBlock size="large" guttersOnMobile>
                 <Heading level="3">Community vibes</Heading>
               </ContentBlock>
-              <Box
-                display="flex"
-                paddingX="large"
-                style={{ gap: 60, overflow: 'auto' }}
-              >
+              <Box display="flex" justifyContent="center" style={{ gap: 60 }}>
                 <Tweet
-                  handle="@lorvsso"
-                  name="Jack Lo Russo"
-                  avatar="https://pbs.twimg.com/profile_images/1365062529622282240/UqZdoTJL_200x200.jpg"
-                  url="https://twitter.com/lorvsso/status/1375592486182084613"
+                  handle="@jeresig"
+                  name="John Resig"
+                  avatar="https://pbs.twimg.com/profile_images/1090714620275245056/HS9xcEDk_200x200.jpg"
+                  url="https://twitter.com/jeresig/status/1375609805373575175"
                 >
-                  I love this ✨ The first time I made a decision at work about
-                  CSS architecture, years ago now, CSS Modules was what I ended
-                  up recommending and implementing. This is CSS Modules for the
-                  new decade ❤️😍
+                  vanilla-extract is super exciting - it’s scratching an itch
+                  that we have at @khanacademy, as we look to move off of
+                  Aphrodite to something that has better perf characteristics.
+                  We were thinking CSS Modules but this is even more ideal!
                 </Tweet>
-
+                {/* 
                 <Tweet
                   handle="@jevakallio"
                   name="Macbook Miller"
@@ -192,7 +195,7 @@ export const HomePage = () => {
                   url="https://twitter.com/jevakallio/status/1375362320122183684"
                 >
                   You had me at vanilla-extract
-                </Tweet>
+                </Tweet> */}
 
                 <Tweet
                   handle="@lorvsso"
@@ -206,7 +209,7 @@ export const HomePage = () => {
                   new decade ❤️😍
                 </Tweet>
 
-                <Tweet
+                {/* <Tweet
                   handle="@markdalgleish"
                   name="Mark Dalgleish"
                   avatar="https://pbs.twimg.com/profile_images/754886061872979968/BzaOWhs1_200x200.jpg"
@@ -216,19 +219,7 @@ export const HomePage = () => {
                   @stitchesjs, leading the way and showing everyone how
                   first-class CSS Variables can be a core feature of modern
                   CSS-in-JS libraries.
-                </Tweet>
-
-                <Tweet
-                  handle="@lorvsso"
-                  name="Jack Lo Russo"
-                  avatar="https://pbs.twimg.com/profile_images/1365062529622282240/UqZdoTJL_200x200.jpg"
-                  url="https://twitter.com/lorvsso/status/1375592486182084613"
-                >
-                  I love this ✨ The first time I made a decision at work about
-                  CSS architecture, years ago now, CSS Modules was what I ended
-                  up recommending and implementing. This is CSS Modules for the
-                  new decade ❤️😍
-                </Tweet>
+                </Tweet> */}
 
                 <Tweet
                   handle="@kbrock84"
@@ -335,51 +326,73 @@ export const HomePage = () => {
                 <Stack space="xlarge" align="center">
                   <Heading level="4">Documentation</Heading>
                   {docsStore.map(({ title, route }) => (
-                    <Link to={route} key={title}>
-                      <Text size="small" color="secondary">
-                        {title}
-                      </Text>
+                    <Link
+                      to={route}
+                      key={title}
+                      size="small"
+                      color="secondary"
+                      baseline
+                    >
+                      {title}
                     </Link>
                   ))}
                 </Stack>
 
                 <Stack space="xlarge" align="center">
                   <Heading level="4">Community</Heading>
-                  <Link to="https://github.com/seek-oss/vanilla-extract">
-                    <Text size="small" color="secondary">
-                      GitHub
-                    </Text>
+                  <Link
+                    to="https://github.com/seek-oss/vanilla-extract"
+                    size="small"
+                    color="secondary"
+                    baseline
+                  >
+                    GitHub
                   </Link>
-                  <Link to="https://github.com/seek-oss/vanilla-extract/discussions">
-                    <Text size="small" color="secondary">
-                      Discussions
-                    </Text>
+                  <Link
+                    to="https://github.com/seek-oss/vanilla-extract/discussions"
+                    size="small"
+                    color="secondary"
+                    baseline
+                  >
+                    Discussions
                   </Link>
                 </Stack>
 
                 <Stack space="xlarge" align="center">
                   <Heading level="4">Related work</Heading>
-                  <Link to="https://seek-oss.github.io/braid-design-system/">
-                    <Text size="small" color="secondary">
-                      <span style={{ whiteSpace: 'nowrap' }}>
-                        Braid Design System
-                      </span>
-                    </Text>
+                  <Link
+                    to="https://seek-oss.github.io/braid-design-system/"
+                    size="small"
+                    color="secondary"
+                    baseline
+                  >
+                    <span style={{ whiteSpace: 'nowrap' }}>
+                      Braid Design System
+                    </span>
                   </Link>
-                  <Link to="https://seek-oss.github.io/capsize/">
-                    <Text size="small" color="secondary">
-                      Capsize
-                    </Text>
+                  <Link
+                    to="https://seek-oss.github.io/capsize/"
+                    size="small"
+                    color="secondary"
+                    baseline
+                  >
+                    Capsize
                   </Link>
-                  <Link to="https://github.com/seek-oss/playroom">
-                    <Text size="small" color="secondary">
-                      Playroom
-                    </Text>
+                  <Link
+                    to="https://github.com/seek-oss/playroom"
+                    size="small"
+                    color="secondary"
+                    baseline
+                  >
+                    Playroom
                   </Link>
-                  <Link to="https://seek-oss.github.io/treat/">
-                    <Text size="small" color="secondary">
-                      Treat
-                    </Text>
+                  <Link
+                    to="https://seek-oss.github.io/treat/"
+                    size="small"
+                    color="secondary"
+                    baseline
+                  >
+                    Treat
                   </Link>
                 </Stack>
               </Columns>
@@ -400,12 +413,12 @@ interface TweetProps {
 }
 
 const Tweet = ({ handle, name, avatar, url, children }: TweetProps) => (
-  <Link to={url}>
+  <Link to={url} className={styles.tweetLink}>
     <Box
       padding="xlarge"
       borderRadius="large"
       background="body"
-      style={{ width: 400, boxShadow: '0 0 30px -10px lightblue' }}
+      className={styles.tweet}
     >
       <Stack space="xlarge">
         <Box display="flex" alignItems="center" style={{ gap: 10 }}>
