@@ -12,12 +12,13 @@ export const Fab = ({
 }) => {
   return (
     <Box
+      position="relative"
       onClick={onClick}
       className={classnames(styles.fab, open ? styles.fab_isOpen : null)}
     >
-      <Box className={styles.fab__bar} />
-      <Box className={styles.fab__bar} />
-      <Box className={styles.fab__bar} />
+      <Box position="absolute" className={styles.fab__bar} />
+      <Box position="absolute" className={styles.fab__bar} />
+      <Box position="absolute" className={styles.fab__bar} />
     </Box>
   );
 };

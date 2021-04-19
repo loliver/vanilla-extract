@@ -119,6 +119,13 @@ const flexGrowRules = {
 } as const;
 export const flexGrow = mapToStyles(flexGrowRules, mapToProperty('flexGrow'));
 
+const positionRules = {
+  absolute: 'absolute',
+  relative: 'relative',
+  fixed: 'fixed',
+} as const;
+export const position = mapToStyles(positionRules, mapToProperty('position'));
+
 export const borderRadius = mapToStyles(
   themeVars.border.radius,
   mapToProperty('borderRadius'),

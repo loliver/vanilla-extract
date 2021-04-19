@@ -84,12 +84,13 @@ const SubLink = ({
       }
     >
       <Box
-        className={styles.subLinkContainer}
+        position="relative"
         paddingLeft="xlarge"
         paddingY="xsmall"
         key={hash}
       >
         <Box
+          position="absolute"
           className={classnames(
             styles.activeIndicator,
             active ? styles.active : '',

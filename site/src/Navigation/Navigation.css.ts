@@ -17,7 +17,6 @@ export const active = style({});
 
 export const activeIndicator = style({
   backgroundColor: themeVars.background.green,
-  position: 'absolute',
   zIndex: -1,
   top: 0,
   left: 0,
@@ -33,8 +32,4 @@ export const activeIndicator = style({
       transform: 'translateX(-80%)',
     },
   },
-});
-
-export const subLinkContainer = style({
-  position: 'relative',
 });

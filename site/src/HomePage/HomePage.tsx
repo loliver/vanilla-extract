@@ -9,6 +9,7 @@ import Text from '../Typography/Text';
 import Logo from '../Logo/Logo';
 import Code from '../Code/Code';
 import InlineCode from '../InlineCode/InlineCode';
+import { Tweet } from '../Tweet/Tweet';
 import docsStore from '../docs-store';
 import * as styles from './HomePage.css';
 
@@ -166,6 +167,7 @@ export const HomePage = () => {
 
         <Box paddingY="xxxlarge">
           <Box
+            position="relative"
             paddingTop="xlarge"
             paddingBottom="xxlarge"
             background="blue"
@@ -251,9 +253,8 @@ export const HomePage = () => {
               </Text>
             </Stack>
 
-            <Box borderRadius="large" style={{ overflow: 'hidden' }}>
-              <Code language="tsx">
-                {dedent`export const [themeClass, themeVars] = createTheme({
+            <Code language="tsx">
+              {dedent`export const [themeClass, themeVars] = createTheme({
                   color: {
                     brand: 'aquamarine'
                   },
@@ -272,8 +273,7 @@ export const HomePage = () => {
                     <h1 class="${'${exampleStyle}'}">Hello world!</h1>
                   </section>
                 \`);`}
-              </Code>
-            </Box>
+            </Code>
           </Columns>
         </ContentBlock>
 
@@ -292,29 +292,27 @@ export const HomePage = () => {
               </Text>
             </Stack>
 
-            <Box borderRadius="large" style={{ overflow: 'hidden' }}>
-              <Code language="tsx">
-                {dedent`export const [themeClass, themeVars] = createTheme({
-                  color: {
-                    brand: 'aquamarine'
-                  },
-                });
+            <Code language="tsx">
+              {dedent`export const [themeClass, themeVars] = createTheme({
+                color: {
+                  brand: 'aquamarine'
+                },
+              });
 
-                export const exampleStyle = style({
-                  backgroundColor: themeVars.color.brand,
-                  padding: 10
-                });
+              export const exampleStyle = style({
+                backgroundColor: themeVars.color.brand,
+                padding: 10
+              });
 
-                // app.ts
-                import { themeClass, exampleStyle } from './styles.css.ts';
+              // app.ts
+              import { themeClass, exampleStyle } from './styles.css.ts';
 
-                document.write(\`
-                  <section class="${'${themeClass}'}">
-                    <h1 class="${'${exampleStyle}'}">Hello world!</h1>
-                  </section>
-                \`);`}
-              </Code>
-            </Box>
+              document.write(\`
+                <section class="${'${themeClass}'}">
+                  <h1 class="${'${exampleStyle}'}">Hello world!</h1>
+                </section>
+              \`);`}
+            </Code>
           </Columns>
         </ContentBlock>
 
@@ -404,48 +402,6 @@ export const HomePage = () => {
   );
 };
 
-interface TweetProps {
-  handle: string;
-  name: string;
-  avatar: string;
-  url: string;
-  children: ReactNode;
-}
-
-const Tweet = ({ handle, name, avatar, url, children }: TweetProps) => (
-  <Link to={url} className={styles.tweetLink}>
-    <Box
-      padding="xlarge"
-      borderRadius="large"
-      background="body"
-      className={styles.tweet}
-    >
-      <Stack space="xlarge">
-        <Box display="flex" alignItems="center" style={{ gap: 10 }}>
-          <Box
-            borderRadius="full"
-            style={{
-              background: `url(${avatar}) no-repeat center center / cover`,
-              height: 60,
-              width: 60,
-              overflow: 'hidden',
-            }}
-          />
-          <Stack space="medium">
-            <Text weight="strong" size="small">
-              {name}
-            </Text>
-            <Text color="secondary" size="small">
-              {handle}
-            </Text>
-          </Stack>
-        </Box>
-        <Text size="small">{children}</Text>
-      </Stack>
-    </Box>
-  </Link>
-);
-
 const Feature = ({
   title,
   children,
@@ -453,9 +409,9 @@ const Feature = ({
   title: string;
   children: ReactNode;
 }) => (
-  <Box style={{ position: 'relative' }} paddingLeft="xlarge">
+  <Box position="relative" paddingLeft="xlarge">
     <Box
-      style={{ position: 'absolute' }}
+      position="absolute"
       className={styles.featureKeyLine}
       paddingLeft="xsmall"
       marginTop={{ mobile: '-small', desktop: '-medium' }}

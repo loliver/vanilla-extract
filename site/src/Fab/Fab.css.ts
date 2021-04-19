@@ -1,9 +1,7 @@
 import { style } from '@vanilla-extract/css';
-import { themeVars } from '../themes.css';
 
 const fabSize = 44;
 export const fab = style({
-  position: 'relative',
   cursor: 'pointer',
   background: '#fff',
   height: fabSize,
@@ -30,7 +28,6 @@ const barPosition = {
   3: fabSize / 2 - Math.floor(barHeight / 2) + barHeight + barSpace,
 };
 export const fab__bar = style({
-  position: 'absolute',
   left: 12,
   right: 12,
   height: 3,

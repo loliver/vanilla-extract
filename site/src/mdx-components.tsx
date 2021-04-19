@@ -95,19 +95,19 @@ export default {
   ),
   h2: ({ component, ...props }: HeadingProps) => (
     <Box component="h2" marginTop="xxxlarge" marginBottom="xlarge">
-      <Box style={{ position: 'relative' }} paddingLeft="large">
+      <Box position="relative" paddingLeft="large">
         <Box
+          position="absolute"
+          paddingLeft="xsmall"
+          marginTop="-small"
+          borderRadius="medium"
           style={{
-            position: 'absolute',
             top: 0,
             left: 0,
             background: '#F090F5',
             height: 36,
             transform: 'skew(-15deg)',
           }}
-          paddingLeft="xsmall"
-          marginTop="-small"
-          borderRadius="medium"
         />
         <Heading component="span" {...props} level="3" />
       </Box>

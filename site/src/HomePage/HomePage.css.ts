@@ -30,7 +30,6 @@ export const skewedContainer = style({
 
 export const skewedContainerSecondary = style({
   background: themeVars.background.blue,
-  position: 'relative',
   ':before': {
     content: '""',
     position: 'absolute',
@@ -50,24 +49,5 @@ export const skewedContainerSecondary = style({
     bottom: '-70px',
     background: themeVars.background.blue,
     clipPath: 'polygon(0 0, 100% 0, 100% 50%, 0 100%)',
-  },
-});
-
-export const tweetLink = style({
-  ':hover': {
-    textDecoration: 'none',
-  },
-  ':focus': {
-    outline: 'none',
-  },
-});
-
-export const tweet = style({
-  width: 400,
-  boxShadow: `0 0 30px -10px ${themeVars.background.blue}`,
-  selectors: {
-    [`${tweetLink}:focus &`]: {
-      boxShadow: `0 0 30px -10px ${themeVars.palette.pink[400]}`,
-    },
   },
 });
