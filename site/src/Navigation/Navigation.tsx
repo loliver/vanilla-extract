@@ -89,7 +89,6 @@ const SubLink = ({
         key={hash}
       >
         <Box
-          borderRadius="full"
           className={classnames(
             styles.activeIndicator,
             active ? styles.active : '',
@@ -139,6 +138,9 @@ export default ({ onSelect }: { onSelect: () => void }) => {
       >
         <SubLink to="https://github.com/seek-oss/vanilla-extract">
           GitHub
+        </SubLink>
+        <SubLink to="https://github.com/seek-oss/vanilla-extract/discussions">
+          Discussions
         </SubLink>
       </NavSection>
     </Stack>

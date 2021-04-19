@@ -25,7 +25,7 @@ interface HeadingProps {
 
 const P = (props: Children) => (
   <Box component="p" paddingBottom="xlarge">
-    <Text component="span">{props.children}</Text>
+    <Text>{props.children}</Text>
   </Box>
 );
 

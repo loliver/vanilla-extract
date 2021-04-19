@@ -9,6 +9,7 @@ import Text from '../Typography/Text';
 import Logo from '../Logo/Logo';
 import Code from '../Code/Code';
 import InlineCode from '../InlineCode/InlineCode';
+import docsStore from '../docs-store';
 import * as styles from './HomePage.css';
 
 export const HomePage = () => {
@@ -326,22 +327,62 @@ export const HomePage = () => {
           </Columns>
         </ContentBlock>
 
-        <ContentBlock guttersOnMobile size="standard">
-          <Box paddingY="xxxlarge">
-            <Stack space="xlarge" align="center">
-              <Heading level="4">Related work from the team</Heading>
-              <Link to="https://seek-oss.github.io/braid-design-system/">
-                <Text color="secondary">Braid Design System</Text>
-              </Link>
-              <Link to="https://seek-oss.github.io/capsize/">
-                <Text color="secondary">Capsize</Text>
-              </Link>
-              <Link to="https://github.com/seek-oss/playroom">
-                <Text color="secondary">Playroom</Text>
-              </Link>
-              <Link to="https://seek-oss.github.io/treat/">
-                <Text color="secondary">Treat</Text>
-              </Link>
+        <ContentBlock guttersOnMobile>
+          <Box component="footer" paddingY="xxxlarge">
+            <Stack space="xxlarge" align="center">
+              <Logo size={60} />
+              <Columns space="xxxlarge">
+                <Stack space="xlarge" align="center">
+                  <Heading level="4">Documentation</Heading>
+                  {docsStore.map(({ title, route }) => (
+                    <Link to={route} key={title}>
+                      <Text size="small" color="secondary">
+                        {title}
+                      </Text>
+                    </Link>
+                  ))}
+                </Stack>
+
+                <Stack space="xlarge" align="center">
+                  <Heading level="4">Community</Heading>
+                  <Link to="https://github.com/seek-oss/vanilla-extract">
+                    <Text size="small" color="secondary">
+                      GitHub
+                    </Text>
+                  </Link>
+                  <Link to="https://github.com/seek-oss/vanilla-extract/discussions">
+                    <Text size="small" color="secondary">
+                      Discussions
+                    </Text>
+                  </Link>
+                </Stack>
+
+                <Stack space="xlarge" align="center">
+                  <Heading level="4">Related work</Heading>
+                  <Link to="https://seek-oss.github.io/braid-design-system/">
+                    <Text size="small" color="secondary">
+                      <span style={{ whiteSpace: 'nowrap' }}>
+                        Braid Design System
+                      </span>
+                    </Text>
+                  </Link>
+                  <Link to="https://seek-oss.github.io/capsize/">
+                    <Text size="small" color="secondary">
+                      Capsize
+                    </Text>
+                  </Link>
+                  <Link to="https://github.com/seek-oss/playroom">
+                    <Text size="small" color="secondary">
+                      Playroom
+                    </Text>
+                  </Link>
+                  <Link to="https://seek-oss.github.io/treat/">
+                    <Text size="small" color="secondary">
+                      Treat
+                    </Text>
+                  </Link>
+                </Stack>
+              </Columns>
             </Stack>
           </Box>
         </ContentBlock>

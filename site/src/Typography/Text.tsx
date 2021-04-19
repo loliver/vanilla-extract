@@ -34,7 +34,7 @@ export const useTextStyles = ({
   );
 
 export default ({
-  component = 'p',
+  component = 'span',
   size,
   color,
   weight,
