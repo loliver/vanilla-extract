@@ -1,7 +1,6 @@
 import React, { ReactNode } from 'react';
 import dedent from 'dedent';
 import { Box, Stack, ContentBlock, Columns, ButtonLink } from '../system';
-import { NewWindow } from '../NewWindow/NewWindow';
 import { Heading } from '../Typography/Heading';
 import { Chevron } from '../Chevron/Chevron';
 import Link from '../Typography/Link';
@@ -12,6 +11,7 @@ import InlineCode from '../InlineCode/InlineCode';
 import { Tweet } from '../Tweet/Tweet';
 import docsStore from '../docs-store';
 import * as styles from './HomePage.css';
+import { GitHubStars } from '../GitHubStars/GitHubStars';
 
 export const HomePage = () => {
   return (
@@ -19,7 +19,7 @@ export const HomePage = () => {
       <Box paddingY="xxxlarge" className={styles.skewedContainer}>
         <ContentBlock size="large" guttersOnMobile>
           <Box paddingY={{ mobile: 'medium', desktop: 'xxlarge' }}>
-            <Columns space="xxlarge" collapseOnMobile alignY="center">
+            <Columns space="xlarge" collapseOnMobile alignY="center">
               <Stack space="xxlarge">
                 <Logo size={100} />
                 <Heading level="1" branded>
@@ -40,15 +40,14 @@ export const HomePage = () => {
                       to="/documentation"
                       icon={<Chevron direction="right" />}
                     >
-                      Documentation
+                      Get started
                     </ButtonLink>
                   </Box>
                   <ButtonLink
                     to="https://github.com/seek-oss/vanilla-extract"
                     variant="transparent"
-                    icon={<NewWindow />}
                   >
-                    GitHub
+                    <GitHubStars />
                   </ButtonLink>
                 </Box>
               </Stack>

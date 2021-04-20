@@ -34,10 +34,11 @@ export const solid = style({
 });
 
 export const transparent = style({
+  boxShadow: `0 0 0 2px inset currentColor`,
   ':hover': {
     background: 'rgba(255,255,255,.5)',
   },
   ':focus': {
-    boxShadow: `0px 0px 0px 5px ${themeVars.palette.blue[300]}`,
+    boxShadow: `0px 0px 0px 5px ${themeVars.palette.pink[500]},0 0 0 2px inset currentColor`,
   },
 });

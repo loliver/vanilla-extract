@@ -24,9 +24,11 @@ export const ButtonLink = ({
     return (
       <a href={to} className={classNames}>
         {children}
-        <Box display="inline" paddingLeft="small">
-          {icon}
-        </Box>
+        {icon ? (
+          <Box display="inline" paddingLeft="small">
+            {icon}
+          </Box>
+        ) : undefined}
       </a>
     );
   }
@@ -35,9 +37,11 @@ export const ButtonLink = ({
     return (
       <HashLink to={to} className={classNames}>
         {children}
-        <Box display="inline" paddingLeft="small">
-          {icon}
-        </Box>
+        {icon ? (
+          <Box display="inline" paddingLeft="small">
+            {icon}
+          </Box>
+        ) : undefined}
       </HashLink>
     );
   }
