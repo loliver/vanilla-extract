@@ -28,25 +28,33 @@ export const Columns = ({
     <Box
       display="flex"
       flexDirection={
-        collapseOnMobile ? { mobile: 'column', desktop: 'row' } : undefined
+        collapseOnMobile
+          ? { mobile: 'column', tablet: 'row', desktop: 'row' }
+          : undefined
       }
       alignItems={resolveAlignY[alignY]}
       marginLeft={
         collapseOnMobile
-          ? { mobile: 'none', desktop: `-${space}` }
+          ? { mobile: 'none', tablet: `-${space}`, desktop: `-${space}` }
           : `-${space}`
       }
       marginTop={
-        collapseOnMobile ? { mobile: `-${space}`, desktop: 'none' } : undefined
+        collapseOnMobile
+          ? { mobile: `-${space}`, tablet: 'none', desktop: 'none' }
+          : undefined
       }
     >
       {columns.map((c, i) => (
         <Box
           paddingLeft={
-            collapseOnMobile ? { mobile: 'none', desktop: space } : space
+            collapseOnMobile
+              ? { mobile: 'none', tablet: space, desktop: space }
+              : space
           }
           paddingTop={
-            collapseOnMobile ? { mobile: space, desktop: 'none' } : undefined
+            collapseOnMobile
+              ? { mobile: space, tablet: 'none', desktop: 'none' }
+              : undefined
           }
           style={{ width: '100%', minWidth: 0 }}
           key={i}

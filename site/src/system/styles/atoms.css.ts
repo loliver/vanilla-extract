@@ -22,6 +22,12 @@ export const margin = {
   left: mapToStyles(margins, mapToProperty('marginLeft', 'mobile')),
   right: mapToStyles(margins, mapToProperty('marginRight', 'mobile')),
 };
+export const marginTablet = {
+  top: mapToStyles(margins, mapToProperty('marginTop', 'tablet')),
+  bottom: mapToStyles(margins, mapToProperty('marginBottom', 'tablet')),
+  left: mapToStyles(margins, mapToProperty('marginLeft', 'tablet')),
+  right: mapToStyles(margins, mapToProperty('marginRight', 'tablet')),
+};
 export const marginDesktop = {
   top: mapToStyles(margins, mapToProperty('marginTop', 'desktop')),
   bottom: mapToStyles(margins, mapToProperty('marginBottom', 'desktop')),
@@ -34,6 +40,12 @@ export const padding = {
   bottom: mapToStyles(space, mapToProperty('paddingBottom', 'mobile')),
   left: mapToStyles(space, mapToProperty('paddingLeft', 'mobile')),
   right: mapToStyles(space, mapToProperty('paddingRight', 'mobile')),
+};
+export const paddingTablet = {
+  top: mapToStyles(space, mapToProperty('paddingTop', 'tablet')),
+  bottom: mapToStyles(space, mapToProperty('paddingBottom', 'tablet')),
+  left: mapToStyles(space, mapToProperty('paddingLeft', 'tablet')),
+  right: mapToStyles(space, mapToProperty('paddingRight', 'tablet')),
 };
 export const paddingDesktop = {
   top: mapToStyles(space, mapToProperty('paddingTop', 'desktop')),
@@ -50,6 +62,10 @@ const displayRules = {
   flex: 'flex',
 } as const;
 export const display = mapToStyles(displayRules, mapToProperty('display'));
+export const displayTablet = mapToStyles(
+  displayRules,
+  mapToProperty('display', 'tablet'),
+);
 export const displayDesktop = mapToStyles(
   displayRules,
   mapToProperty('display', 'desktop'),
@@ -63,6 +79,10 @@ const alignItemsRules = {
 export const alignItems = mapToStyles(
   alignItemsRules,
   mapToProperty('alignItems'),
+);
+export const alignItemsTablet = mapToStyles(
+  alignItemsRules,
+  mapToProperty('alignItems', 'tablet'),
 );
 export const alignItemsDesktop = mapToStyles(
   alignItemsRules,
@@ -79,6 +99,10 @@ export const justifyContent = mapToStyles(
   justifyContentRules,
   mapToProperty('justifyContent'),
 );
+export const justifyContentTablet = mapToStyles(
+  justifyContentRules,
+  mapToProperty('justifyContent', 'tablet'),
+);
 export const justifyContentDesktop = mapToStyles(
   justifyContentRules,
   mapToProperty('justifyContent', 'desktop'),
@@ -93,6 +117,10 @@ const flexDirectionRules = {
 export const flexDirection = mapToStyles(
   flexDirectionRules,
   mapToProperty('flexDirection'),
+);
+export const flexDirectionTablet = mapToStyles(
+  flexDirectionRules,
+  mapToProperty('flexDirection', 'tablet'),
 );
 export const flexDirectionDesktop = mapToStyles(
   flexDirectionRules,

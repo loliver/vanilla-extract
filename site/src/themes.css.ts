@@ -90,6 +90,12 @@ const calculateTypographyStyles = (
     fontMetrics: fontMetrics[type],
   });
 
+  const tablet = computeValues({
+    fontSize: definition.tablet.fontSize,
+    leading: definition.tablet.rows * grid,
+    fontMetrics: fontMetrics[type],
+  });
+
   const desktop = computeValues({
     fontSize: definition.desktop.fontSize,
     leading: definition.desktop.rows * grid,
@@ -102,6 +108,12 @@ const calculateTypographyStyles = (
       lineHeight: mobile.lineHeight,
       capHeightTrim: mobile.capHeightTrim,
       baselineTrim: mobile.baselineTrim,
+    },
+    tablet: {
+      fontSize: tablet.fontSize,
+      lineHeight: tablet.lineHeight,
+      capHeightTrim: tablet.capHeightTrim,
+      baselineTrim: tablet.baselineTrim,
     },
     desktop: {
       fontSize: desktop.fontSize,
@@ -143,6 +155,10 @@ export const [themeClass, themeVars] = createTheme({
           fontSize: 36,
           rows: 12,
         },
+        tablet: {
+          fontSize: 52,
+          rows: 15,
+        },
         desktop: {
           fontSize: 52,
           rows: 15,
@@ -155,6 +171,10 @@ export const [themeClass, themeVars] = createTheme({
         mobile: {
           fontSize: 28,
           rows: 10,
+        },
+        tablet: {
+          fontSize: 38,
+          rows: 12,
         },
         desktop: {
           fontSize: 38,
@@ -169,6 +189,10 @@ export const [themeClass, themeVars] = createTheme({
           fontSize: 24,
           rows: 8,
         },
+        tablet: {
+          fontSize: 30,
+          rows: 10,
+        },
         desktop: {
           fontSize: 30,
           rows: 10,
@@ -181,6 +205,10 @@ export const [themeClass, themeVars] = createTheme({
         mobile: {
           fontSize: 22,
           rows: 8,
+        },
+        tablet: {
+          fontSize: 22,
+          rows: 9,
         },
         desktop: {
           fontSize: 22,
@@ -197,6 +225,10 @@ export const [themeClass, themeVars] = createTheme({
           fontSize: 18,
           rows: 9,
         },
+        tablet: {
+          fontSize: 20,
+          rows: 10,
+        },
         desktop: {
           fontSize: 20,
           rows: 10,
@@ -209,6 +241,10 @@ export const [themeClass, themeVars] = createTheme({
         mobile: {
           fontSize: 14,
           rows: 6,
+        },
+        tablet: {
+          fontSize: 16,
+          rows: 8,
         },
         desktop: {
           fontSize: 16,
@@ -223,6 +259,10 @@ export const [themeClass, themeVars] = createTheme({
           fontSize: 16,
           rows: 8,
         },
+        tablet: {
+          fontSize: 16,
+          rows: 8,
+        },
         desktop: {
           fontSize: 16,
           rows: 8,
@@ -233,6 +273,10 @@ export const [themeClass, themeVars] = createTheme({
     xsmall: calculateTypographyStyles(
       {
         mobile: {
+          fontSize: 15,
+          rows: 7,
+        },
+        tablet: {
           fontSize: 15,
           rows: 7,
         },

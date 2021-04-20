@@ -42,17 +42,22 @@ export interface BoxProps extends AllHTMLAttributes<HTMLElement> {
 export const resolveResponsiveProp = <Keys extends string | number>(
   value: ResponsiveProp<Keys>,
   mobileAtoms: Record<Keys, string>,
+  tabletAtoms: Record<Keys, string>,
   desktopAtoms: Record<Keys, string>,
 ) => {
   if (typeof value === 'string' || typeof value === 'number') {
     return mobileAtoms[value!];
   }
 
-  const { mobile: mobileValue, desktop: desktopValue } = value;
+  const {
+    mobile: mobileValue,
+    tablet: tabletValue,
+    desktop: desktopValue,
+  } = value;
 
   return `${mobileAtoms[mobileValue!]}${
-    desktopValue !== mobileValue ? ` ${desktopAtoms[desktopValue!]}` : ''
-  }`;
+    tabletValue !== mobileValue ? ` ${tabletAtoms[tabletValue!]}` : ''
+  }${desktopValue !== tabletValue ? ` ${desktopAtoms[desktopValue!]}` : ''}`;
 };
 
 export const Box = ({
@@ -102,72 +107,84 @@ export const Box = ({
       resolveResponsiveProp(
         resolvedPaddingTop,
         atomStyles.padding.top,
+        atomStyles.paddingTablet.top,
         atomStyles.paddingDesktop.top,
       ),
     resolvedPaddingBottom &&
       resolveResponsiveProp(
         resolvedPaddingBottom,
         atomStyles.padding.bottom,
+        atomStyles.paddingTablet.bottom,
         atomStyles.paddingDesktop.bottom,
       ),
     resolvedPaddingLeft &&
       resolveResponsiveProp(
         resolvedPaddingLeft,
         atomStyles.padding.left,
+        atomStyles.paddingTablet.left,
         atomStyles.paddingDesktop.left,
       ),
     resolvedPaddingRight &&
       resolveResponsiveProp(
         resolvedPaddingRight,
         atomStyles.padding.right,
+        atomStyles.paddingTablet.right,
         atomStyles.paddingDesktop.right,
       ),
     resolvedMarginTop &&
       resolveResponsiveProp(
         resolvedMarginTop,
         atomStyles.margin.top,
+        atomStyles.marginTablet.top,
         atomStyles.marginDesktop.top,
       ),
     resolvedMarginBottom &&
       resolveResponsiveProp(
         resolvedMarginBottom,
         atomStyles.margin.bottom,
+        atomStyles.marginTablet.bottom,
         atomStyles.marginDesktop.bottom,
       ),
     resolvedMarginLeft &&
       resolveResponsiveProp(
         resolvedMarginLeft,
         atomStyles.margin.left,
+        atomStyles.marginTablet.left,
         atomStyles.marginDesktop.left,
       ),
     resolvedMarginRight &&
       resolveResponsiveProp(
         resolvedMarginRight,
         atomStyles.margin.right,
+        atomStyles.marginTablet.right,
         atomStyles.marginDesktop.right,
       ),
     display &&
       resolveResponsiveProp(
         display,
         atomStyles.display,
+        atomStyles.displayTablet,
         atomStyles.displayDesktop,
       ),
     alignItems &&
       resolveResponsiveProp(
         alignItems,
         atomStyles.alignItems,
+        atomStyles.alignItemsTablet,
         atomStyles.alignItemsDesktop,
       ),
     justifyContent &&
       resolveResponsiveProp(
         justifyContent,
         atomStyles.justifyContent,
+        atomStyles.justifyContentTablet,
         atomStyles.justifyContentDesktop,
       ),
     flexDirection &&
       resolveResponsiveProp(
         flexDirection,
         atomStyles.flexDirection,
+        atomStyles.flexDirectionTablet,
         atomStyles.flexDirectionDesktop,
       ),
     atomStyles.flexWrap[flexWrap!],

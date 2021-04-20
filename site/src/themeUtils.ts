@@ -4,7 +4,8 @@ import { Properties, SimplePseudos } from 'csstype';
 
 export const breakpoints = {
   mobile: 0,
-  desktop: 1024,
+  tablet: 768,
+  desktop: 1200,
 };
 
 export type Breakpoint = keyof typeof breakpoints;
@@ -19,6 +20,7 @@ const makeMediaQuery = (breakpoint: keyof typeof breakpoints) => (
       };
 
 const mediaQuery = {
+  tablet: makeMediaQuery('tablet'),
   desktop: makeMediaQuery('desktop'),
 };
 
@@ -27,25 +29,31 @@ type CSSProps = Properties<string | number> &
 
 interface ResponsiveStyle {
   mobile?: CSSProps;
+  tablet?: CSSProps;
   desktop?: CSSProps;
 }
 
 export const responsiveStyle = ({
   mobile,
+  tablet,
   desktop,
 }: ResponsiveStyle): StyleRule => {
   const mobileStyles = omit(mobile, '@media');
 
-  const desktopStyles =
-    !desktop || isEqual(desktop, mobileStyles) ? null : desktop;
+  const tabletStyles = !tablet || isEqual(tablet, mobileStyles) ? null : tablet;
 
-  const hasMediaQueries = desktopStyles;
+  const stylesBelowDesktop = tabletStyles || mobileStyles;
+  const desktopStyles =
+    !desktop || isEqual(desktop, stylesBelowDesktop) ? null : desktop;
+
+  const hasMediaQueries = tabletStyles || desktopStyles;
 
   return {
     ...mobileStyles,
     ...(hasMediaQueries
       ? {
           '@media': {
+            ...(tabletStyles ? mediaQuery.tablet(tabletStyles) : {}),
             ...(desktopStyles ? mediaQuery.desktop(desktopStyles) : {}),
           },
         }

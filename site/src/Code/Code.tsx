@@ -15,7 +15,11 @@ export interface CodeProps {
       };
 }
 export default ({ language, children }: CodeProps) => {
-  const padding = { mobile: 'large', desktop: 'xlarge' } as const;
+  const padding = {
+    mobile: 'large',
+    tablet: 'large',
+    desktop: 'xlarge',
+  } as const;
 
   return (
     <Box className={styles.root} borderRadius="large" padding={padding}>

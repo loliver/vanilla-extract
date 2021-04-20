@@ -16,7 +16,9 @@ export const ContentBlock = ({
     <Box
       className={classnames(styles.root, styles.width[size])}
       paddingX={
-        guttersOnMobile ? { mobile: 'large', desktop: 'none' } : undefined
+        guttersOnMobile
+          ? { mobile: 'large', tablet: 'large', desktop: 'medium' }
+          : undefined
       }
     >
       {children}

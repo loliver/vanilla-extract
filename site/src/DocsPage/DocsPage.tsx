@@ -85,8 +85,8 @@ export const DocsPage = () => {
 
       <Box
         component="aside"
-        paddingTop={{ mobile: 'xlarge', desktop: 'none' }}
-        paddingX={{ mobile: 'xlarge', desktop: 'large' }}
+        paddingTop={{ mobile: 'xlarge', tablet: 'xlarge', desktop: 'none' }}
+        paddingX={{ mobile: 'xlarge', tablet: 'xlarge', desktop: 'large' }}
         className={classnames(
           styles.sidebar,
           menuOpen ? styles.sidebarOpen : '',

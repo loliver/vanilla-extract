@@ -18,7 +18,13 @@ export const HomePage = () => {
     <>
       <Box paddingY="xxxlarge" className={styles.skewedContainer}>
         <ContentBlock size="large" guttersOnMobile>
-          <Box paddingY={{ mobile: 'medium', desktop: 'xxlarge' }}>
+          <Box
+            paddingY={{
+              mobile: 'medium',
+              tablet: 'xlarge',
+              desktop: 'xxlarge',
+            }}
+          >
             <Columns space="xlarge" collapseOnMobile alignY="center">
               <Stack space="xxlarge">
                 <Logo size={100} />
@@ -78,7 +84,7 @@ export const HomePage = () => {
       <Stack space="xxxlarge">
         <ContentBlock guttersOnMobile>
           <Box
-            padding={{ mobile: 'xlarge', desktop: 'xxlarge' }}
+            padding={{ mobile: 'xlarge', tablet: 'xlarge', desktop: 'xxlarge' }}
             borderRadius="large"
             background="body"
             style={{
@@ -417,7 +423,7 @@ const Feature = ({
       position="absolute"
       className={styles.featureKeyLine}
       paddingLeft="xsmall"
-      marginTop={{ mobile: '-small', desktop: '-medium' }}
+      marginTop={{ mobile: '-small', tablet: '-medium', desktop: '-medium' }}
       borderRadius="medium"
     />
     <Stack space="xlarge">

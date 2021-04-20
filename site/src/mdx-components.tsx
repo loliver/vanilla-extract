@@ -44,6 +44,7 @@ const Td = (props: Children) => <Text component="td">{props.children}</Text>;
 const A = ({
   href,
   size, // Omit
+  color, // Omit
   ...restProps
 }: AllHTMLAttributes<HTMLAnchorElement>) =>
   href ? (
@@ -126,7 +127,7 @@ export default {
     'data-language': string;
     dangerouslySetInnerHTML: { __html: string };
   }) => (
-    <Box marginBottom={{ mobile: 'small', desktop: 'large' }}>
+    <Box marginBottom={{ mobile: 'small', tablet: 'medium', desktop: 'large' }}>
       <Code language={language}>{dangerouslySetInnerHTML}</Code>
     </Box>
   ),
